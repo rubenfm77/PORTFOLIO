@@ -68,9 +68,14 @@
             background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08), transparent);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1.2s ease-out;
         }
 
-        /* Animated Background Blobs */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .blob {
             position: absolute;
             width: 300px; height: 300px;
@@ -89,7 +94,7 @@
         .skills-container {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 3rem;
             flex-wrap: wrap;
         }
@@ -99,14 +104,17 @@
             align-items: center;
             gap: 0.75rem;
             background: var(--card-bg);
-            padding: 10px 20px;
-            border-radius: 12px;
+            padding: 12px 24px;
+            border-radius: 50px;
             border: 1px solid var(--border);
             font-weight: 600;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
 
-        .skill-badge img { width: 24px; height: 24px; }
+        .skill-badge:hover { transform: scale(1.05); border-color: var(--primary); }
+
+        .skill-badge img { width: 20px; height: 20px; }
 
         /* Projects */
         #projects { padding: 100px 2rem; background: var(--section-alt); }
@@ -126,17 +134,20 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: 0.3s ease;
         }
 
         .project-card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
-            transition: 0.3s ease;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
         }
 
-        .img-container { height: 240px; background: #e2e8f0; }
+        .img-container { height: 240px; background: #e2e8f0; overflow: hidden; }
 
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+
+        .project-card:hover img { transform: scale(1.1); }
 
         .project-info { padding: 2rem; flex-grow: 1; }
 
@@ -149,7 +160,7 @@
             margin-top: 1.5rem;
             padding: 10px 20px;
             background: var(--primary);
-            color: white;
+            color: white !important;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
@@ -257,12 +268,12 @@
             </div>
 
             <div class="project-card">
-                <div class="img-container"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" alt="Healthcare Heart"></div>
+                <div class="img-container"><img src="https://raw.githubusercontent.com/rubenfm77/HealthCare/main/H1.jpg" alt="Healthcare Dashboard"></div>
                 <div class="project-info">
                     <div class="tags"><span class="tag">Healthcare</span></div>
-                    <h3>Heart Patient Insights</h3>
-                    <p>Clinical data analysis focusing on patient risk factors and diagnostic trends.</p>
-                    <a href="https://github.com/rubenfm77" target="_blank" class="view-btn">View Project ↗</a>
+                    <h3>Patient Outcome Analysis</h3>
+                    <p>Analyzing clinical healthcare data to identify risk factors and diagnostic trends.</p>
+                    <a href="https://github.com/rubenfm77/HealthCare" target="_blank" class="view-btn">View Project ↗</a>
                 </div>
             </div>
         </div>
@@ -273,10 +284,11 @@
         <p>Available for data roles and collaborations.</p>
         <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem;">
             <a href="mailto:Ruben.fernandez.martinez77@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 700;">Email</a>
-            <a href="https://linkedin.com" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700;">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700;">LinkedIn</a>
             <a href="https://github.com/rubenfm77" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700;">GitHub</a>
         </div>
     </footer>
 
 </body>
 </html>
+
