@@ -57,7 +57,6 @@
             align-items: center;
         }
 
-        /* LinkedIn Name Brand */
         .logo-group {
             display: flex;
             align-items: center;
@@ -75,7 +74,6 @@
         .linkedin-icon {
             color: var(--text-muted);
             font-size: 1.3rem;
-            transition: color 0.3s;
         }
 
         .logo-group:hover .logo { color: var(--linkedin); }
@@ -95,7 +93,6 @@
         #hero {
             padding: 180px 2rem 100px;
             text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05), transparent);
         }
 
         h1 { font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -2px; }
@@ -121,7 +118,7 @@
             font-size: 0.85rem;
         }
 
-        .skill-badge img { width: 18px; height: 18px; }
+        .skill-badge img { width: 20px; height: 20px; object-fit: contain; }
 
         #projects { padding: 80px 2rem; background: var(--section-alt); }
 
@@ -179,7 +176,6 @@
                 <div class="logo">RUBÉN</div>
                 <i class="fa-brands fa-linkedin linkedin-icon"></i>
             </a>
-
             <ul>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="mailto:Ruben.fernandez.martinez77@gmail.com" class="cv-btn">Hire Me</a></li>
@@ -197,7 +193,12 @@
             <div class="skill-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"> Power BI</div>
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"> R Language</div>
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"> Python</div>
-            <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg"> Tableau</div>
+            
+            <div class="skill-badge">
+                <img src="https://www.vectorlogo.zone/logos/tableau/tableau-icon.svg" 
+                     onerror="this.src='https://cdn.worldvectorlogo.com/logos/tableau-software.svg'"> 
+                Tableau
+            </div>
         </div>
     </section>
 
@@ -287,4 +288,5 @@
 
 </body>
 </html>
+
 
