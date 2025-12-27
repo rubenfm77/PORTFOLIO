@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rubén | Data Analyst Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
             --primary: #2563eb;
+            --linkedin: #0077b5;
             --accent: #0ea5e9;
             --text: #0f172a;
             --text-muted: #64748b;
@@ -26,7 +28,7 @@
             --border: #1e293b;
         }
 
-        * { box-sizing: border-box; transition: background-color 0.3s ease, border-color 0.3s ease; }
+        * { box-sizing: border-box; transition: all 0.3s ease; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -40,7 +42,7 @@
         header {
             position: fixed;
             top: 0; width: 100%;
-            background: rgba(var(--bg), 0.7);
+            background: rgba(var(--bg), 0.8);
             backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
@@ -49,162 +51,138 @@
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Name link styling */
-        .logo-link {
+        /* LinkedIn Name Brand */
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            transition: transform 0.2s ease;
-        }
-        
-        .logo-link:hover {
-            transform: scale(1.05);
         }
 
         .logo { 
             font-weight: 800; 
             font-size: 1.4rem; 
-            color: var(--primary); 
-            letter-spacing: -1px; 
+            color: var(--text); 
+            letter-spacing: -1px;
         }
 
-        nav ul { list-style: none; display: flex; gap: 2.5rem; margin: 0; align-items: center; }
+        .linkedin-icon {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
 
+        .logo-group:hover .logo { color: var(--linkedin); }
+        .logo-group:hover .linkedin-icon { color: var(--linkedin); }
+
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; align-items: center; }
         nav a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem; }
         
-        nav a:hover { color: var(--primary); }
+        .cv-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem !important;
+        }
 
         #hero {
-            padding: 180px 2rem 120px;
+            padding: 180px 2rem 100px;
             text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08), transparent);
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1.2s ease-out;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05), transparent);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .blob {
-            position: absolute;
-            width: 300px; height: 300px;
-            background: var(--primary);
-            filter: blur(80px);
-            opacity: 0.1;
-            z-index: -1;
-            border-radius: 50%;
-        }
-
-        h1 { font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -2px; }
-
-        .subtitle { font-size: 1.4rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; font-weight: 400; }
+        h1 { font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -2px; }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; }
 
         .skills-container {
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
-            margin-top: 3rem;
+            gap: 1rem;
+            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
         .skill-badge {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 8px;
             background: var(--card-bg);
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 50px;
             border: 1px solid var(--border);
             font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
         }
 
-        .skill-badge img { width: 20px; height: 20px; }
+        .skill-badge img { width: 18px; height: 18px; }
 
-        #projects { padding: 100px 2rem; background: var(--section-alt); }
+        #projects { padding: 80px 2rem; background: var(--section-alt); }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .project-card {
             background: var(--card-bg);
-            border-radius: 24px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .project-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-        }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
-        .img-container { height: 240px; background: #f1f5f9; overflow: hidden; position: relative; }
+        .img-container { height: 220px; background: #eef2f6; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-
-        .project-info { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
-
-        .tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-
-        .tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
-
+        .project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .tag { font-size: 0.65rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 0.5rem; }
+        
         .view-btn {
-            display: inline-block;
             margin-top: auto;
-            padding: 12px 24px;
+            padding: 10px;
             background: var(--primary);
             color: white !important;
-            border-radius: 12px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
             text-align: center;
+            font-weight: 700;
+            font-size: 0.8rem;
         }
 
-        .theme-toggle { cursor: pointer; background: none; border: none; font-size: 1.2rem; padding: 0.5rem; }
+        .theme-toggle { cursor: pointer; background: none; border: none; font-size: 1.1rem; }
 
-        footer { padding: 100px 2rem; text-align: center; border-top: 1px solid var(--border); }
-
-        .contact-links { display: flex; justify-content: center; gap: 2.5rem; margin-top: 2rem; }
-
-        .contact-links a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        footer { padding: 60px 2rem; text-align: center; }
 
         @media (max-width: 768px) {
             nav ul { display: none; }
-            h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="blob" style="top: 10%; left: 5%;"></div>
-    <div class="blob" style="bottom: 15%; right: 5%; background: var(--accent);"></div>
-
     <header>
         <nav>
-            <a href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" class="logo-link">
-                <div class="logo">RUBÉN.</div>
+            <a href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" class="logo-group">
+                <div class="logo">RUBÉN</div>
+                <i class="fa-brands fa-linkedin linkedin-icon"></i>
             </a>
+
             <ul>
                 <li><a href="#projects">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="mailto:Ruben.fernandez.martinez77@gmail.com" class="cv-btn">Hire Me</a></li>
                 <li><button class="theme-toggle" onclick="document.body.classList.toggle('dark')">🌓</button></li>
             </ul>
         </nav>
@@ -212,14 +190,14 @@
 
     <section id="hero">
         <h1>Hi, I'm Rubén.</h1>
-        <p class="subtitle">Data Analyst dedicated to uncovering patterns and building high-impact visual narratives.</p>
+        <p class="subtitle">Data Analyst transforming complex datasets into actionable business intelligence.</p>
         
         <div class="skills-container">
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"> SQL</div>
             <div class="skill-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"> Power BI</div>
-            <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"> R</div>
+            <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"> R Language</div>
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"> Python</div>
-            <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-plain.svg"> Tableau</div>
+            <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg"> Tableau</div>
         </div>
     </section>
 
@@ -229,20 +207,20 @@
             <div class="project-card">
                 <div class="img-container"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg"></div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">Power BI</span></div>
-                    <h3>Sales Performance BI</h3>
-                    <p>Comprehensive revenue tracking and forecasting using DAX measures.</p>
-                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Business Intelligence</span>
+                    <h3>Sales Analytics</h3>
+                    <p>Interactive sales tracking dashboard built with Power BI and DAX.</p>
+                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="img-container"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg"></div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">Power BI</span></div>
-                    <h3>Attrition Insights</h3>
-                    <p>Deep-dive into employee data to predict and reduce turnover rates.</p>
-                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Human Resources</span>
+                    <h3>Attrition Analysis</h3>
+                    <p>Using data to visualize employee retention and turnover trends.</p>
+                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
@@ -252,10 +230,10 @@
                          onerror="this.src='https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800'">
                 </div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">Tableau</span></div>
-                    <h3>Workforce Demographics</h3>
-                    <p>Advanced Tableau storytelling focusing on global workforce distribution.</p>
-                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Tableau</span>
+                    <h3>Workforce Insights</h3>
+                    <p>Visualizing global employee demographics and key metrics.</p>
+                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
@@ -265,20 +243,20 @@
                          onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'">
                 </div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">Tableau</span></div>
-                    <h3>Market Profitability</h3>
-                    <p>Segmenting customers and subcategories to identify growth opportunities.</p>
-                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Market Analysis</span>
+                    <h3>Market Trends</h3>
+                    <p>Exploration of profitability across different market segments.</p>
+                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="img-container"><img src="https://raw.githubusercontent.com/rubenfm77/MACHINE_LEARNING_R/main/R.jpg"></div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">R Language</span></div>
-                    <h3>Predictive Modeling</h3>
-                    <p>Predicting employee attrition using Logistic Regression in R.</p>
-                    <a href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Machine Learning</span>
+                    <h3>R Prediction Model</h3>
+                    <p>Statistical analysis and predictive modeling using R programming.</p>
+                    <a href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
@@ -288,24 +266,23 @@
                          onerror="this.src='https://raw.githubusercontent.com/rubenfm77/HealthCare/main/heart.jpg'">
                 </div>
                 <div class="project-info">
-                    <div class="tags"><span class="tag">Healthcare</span></div>
-                    <h3>Heart Disease Analytics</h3>
-                    <p>Clinical data analysis focusing on patient risk factors and medical trends.</p>
-                    <a href="https://github.com/rubenfm77/HealthCare" target="_blank" class="view-btn">View GitHub ↗</a>
+                    <span class="tag">Healthcare</span>
+                    <h3>Heart Health Data</h3>
+                    <p>Analyzing patient risk factors and diagnostic outcomes.</p>
+                    <a href="https://github.com/rubenfm77/HealthCare" target="_blank" class="view-btn">GitHub Repo ↗</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <footer id="contact">
-        <h2>Let's Start a Conversation</h2>
-        <div class="contact-links">
-            <a href="mailto:Ruben.fernandez.martinez77@gmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank">LinkedIn</a>
-            <a href="https://github.com/rubenfm77" target="_blank">GitHub</a>
+    <footer>
+        <p style="font-weight: 700;">Connect with me</p>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+            <a href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" style="color: var(--linkedin); font-size: 1.5rem;"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/rubenfm77" target="_blank" style="color: var(--text); font-size: 1.5rem;"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:Ruben.fernandez.martinez77@gmail.com" style="color: var(--primary); font-size: 1.5rem;"><i class="fa-solid fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 4rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2025 Rubén. Built with data and precision.</p>
     </footer>
 
 </body>
