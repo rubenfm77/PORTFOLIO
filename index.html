@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubén Fernández Martínez | Data Analyst Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --secondary: #1e40af; --text: #1f2937; --light: #f3f4f6; --dark-bg: #111827; --bg: #fff; --card-bg: #fff; }
+        body.dark { --bg: #0f172a; --card-bg: #1e293b; --text: #e2e8f0; --light: #334155; }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; color: var(--text); line-height: 1.6; background: var(--bg); transition: background 0.3s; }
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        body.dark header { background: rgba(15,23,42,0.95); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; }
+        nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary); }
+        section { padding: 100px 2rem 80px; max-width: 1200px; margin: 0 auto; }
+        #hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-align: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .hero-content { max-width: 800px; }
+        h1 { font-size: 3.5rem; margin: 0 0 1rem; }
+        .subtitle { font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.9; }
+        .btn { background: white; color: var(--primary); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.3s; display: inline-block; margin: 0.5rem; }
+        body.dark .btn { background: var(--dark-bg); color: var(--primary); }
+        .btn:hover { transform: translateY(-5px); }
+        h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--secondary); }
+        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-10px); }
+        .project-card img { width: 100%; height: 300px; object-fit: contain; background: #f9f9f9; }
+        .project-info { padding: 1.5rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tag { background: var(--light); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; color: var(--text); }
+        footer { text-align: center; padding: 2rem; background: var(--dark-bg); color: white; }
+        .toggle { cursor: pointer; font-size: 1.2rem; }
+        @media (max-width: 768px) { h1 { font-size: 2.5rem; } .project-card img { height: 250px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Rubén Fernández Martínez</div>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><span class="toggle" onclick="document.body.classList.toggle('dark')">🌙/☀️</span></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Rubén Fernández Martínez</h1>
+            <p class="subtitle">Data Analyst | Turning Data into Actionable Insights</p>
+            <p>Specializing in Power BI, Tableau, SQL, R, and Machine Learning.</p>
+            <a href="https://github.com/rubenfm77" target="_blank" class="btn">View GitHub ↗</a>
+            <a href="#projects" class="btn">Explore Projects</a>
+        </div>
+    </section>
+
+    <section id="projects" style="background:var(--light);">
+        <h2>Featured Projects</h2>
+        <div class="projects">
+            <!-- Your real dashboards look great! -->
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg" alt="Power BI Sales Dashboard">
+                <div class="project-info">
+                    <h3>Sales Dashboard (Power BI)</h3>
+                    <p>Interactive sales analysis with DAX measures.</p>
+                    <div class="tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">DAX</span>
+                        <span class="tag">Sales Analytics</span>
+                    </div>
+                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">View on GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg" alt="Power BI HR Dashboard">
+                <div class="project-info">
+                    <h3>HR Attrition Dashboard (Power BI)</h3>
+                    <p>Employee metrics and attrition insights.</p>
+                    <div class="tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">HR Analytics</span>
+                    </div>
+                    <a href="https://github.com/rubenfm77/POWER-BI" target="_blank" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">View on GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg" alt="Tableau HR Dashboard">
+                <div class="project-info">
+                    <h3>HR Overview Dashboard (Tableau)</h3>
+                    <p>Demographics and performance visualization.</p>
+                    <div class="tags">
+                        <span class="tag">Tableau</span>
+                        <span class="tag">HR Analytics</span>
+                    </div>
+                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">View on GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/P1.jpg" alt="Tableau Sales Dashboard">
+                <div class="project-info">
+                    <h3>Sales Performance Dashboard (Tableau)</h3>
+                    <p>Yearly trends and subcategory analysis.</p>
+                    <div class="tags">
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Sales</span>
+                    </div>
+                    <a href="https://github.com/rubenfm77/TABLEAU" target="_blank" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">View on GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/rubenfm77/MACHINE_LEARNING_R/main/R.jpg" alt="R Logo">
+                <div class="project-info">
+                    <h3>Employee Attrition Prediction (R)</h3>
+                    <p>Predictive ML model capstone project.</p>
+                    <div class="tags">
+                        <span class="tag">R</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Predictive Modeling</span>
+                    </div>
+                    <a href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">View on GitHub ↗</a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:3rem;">
+            <a href="https://github.com/rubenfm77?tab=repositories" target="_blank" class="btn">All Projects on GitHub ↗</a>
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 2rem;">
+            Open to data analyst roles, freelance projects, or collaborations!
+        </p>
+        <p style="text-align:center;">
+            <a href="mailto:Ruben.fernandez.martinez77@gmail.com">Ruben.fernandez.martinez77@gmail.com</a> | 
+            <a href="https://www.linkedin.com/in/rubén-fernández-martínez-851333172" target="_blank">LinkedIn ↗</a> | 
+            <a href="https://github.com/rubenfm77" target="_blank">GitHub ↗</a>
+        </p>
+    </section>
+
+    <footer>
+        © 2025 Rubén Fernández Martínez. All rights reserved.
+    </footer>
+</body>
+</html>
