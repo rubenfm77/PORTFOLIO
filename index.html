@@ -17,6 +17,7 @@
             --card-bg: #ffffff;
             --section-alt: #f1f5f9;
             --border: #e2e8f0;
+            --header-bg: rgba(255, 255, 255, 0.8);
         }
 
         body.dark {
@@ -26,6 +27,7 @@
             --text-muted: #94a3b8;
             --section-alt: #0b0f1a;
             --border: #1e293b;
+            --header-bg: rgba(2, 6, 23, 0.8);
         }
 
         * { box-sizing: border-box; transition: all 0.3s ease; }
@@ -42,8 +44,9 @@
         header {
             position: fixed;
             top: 0; width: 100%;
-            background: rgba(var(--bg), 0.8);
+            background: var(--header-bg);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
         }
@@ -64,10 +67,10 @@
             text-decoration: none;
         }
 
-        .logo { 
-            font-weight: 800; 
-            font-size: 1.4rem; 
-            color: var(--text); 
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--text);
             letter-spacing: -1px;
         }
 
@@ -193,10 +196,9 @@
             <div class="skill-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"> Power BI</div>
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"> R Language</div>
             <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"> Python</div>
-            
             <div class="skill-badge">
-                <img src="https://www.vectorlogo.zone/logos/tableau/tableau-icon.svg" 
-                     onerror="this.src='https://cdn.worldvectorlogo.com/logos/tableau-software.svg'"> 
+                <img src="https://www.vectorlogo.zone/logos/tableau/tableau-icon.svg"
+                     onerror="this.src='https://cdn.worldvectorlogo.com/logos/tableau-software.svg'">
                 Tableau
             </div>
         </div>
@@ -204,6 +206,19 @@
 
     <section id="projects">
         <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" 
+                         onerror="this.src='https://raw.githubusercontent.com/rubenfm77/cycling-performance-ml/main/assets/hero.jpg'">
+                </div>
+                <div class="project-info">
+                    <span class="tag">Machine Learning & Python</span>
+                    <h3>Cycling Performance ML</h3>
+                    <p>Predictive modeling and performance analysis using Python to optimize training loads and athletic efficiency.</p>
+                    <a href="https://github.com/rubenfm77/cycling-performance-ml" target="_blank" class="view-btn">GitHub Repo ↗</a>
+                </div>
+            </div>
             
             <div class="project-card">
                 <div class="img-container"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg"></div>
@@ -227,7 +242,7 @@
 
             <div class="project-card">
                 <div class="img-container">
-                    <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg" 
+                    <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg"
                          onerror="this.src='https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800'">
                 </div>
                 <div class="project-info">
@@ -240,7 +255,7 @@
 
             <div class="project-card">
                 <div class="img-container">
-                    <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/P1.jpg" 
+                    <img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/P1.jpg"
                          onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'">
                 </div>
                 <div class="project-info">
@@ -263,7 +278,7 @@
 
             <div class="project-card">
                 <div class="img-container">
-                    <img src="https://raw.githubusercontent.com/rubenfm77/HealthCare/main/Dashblack.jpg" 
+                    <img src="https://raw.githubusercontent.com/rubenfm77/HealthCare/main/Dashblack.jpg"
                          onerror="this.src='https://raw.githubusercontent.com/rubenfm77/HealthCare/main/heart.jpg'">
                 </div>
                 <div class="project-info">
