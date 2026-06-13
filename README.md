@@ -7,5 +7,6 @@
 ## Power BI/ Tableau Dashboards
 - Dashboards for medical data.
 - Dashboards for businesses.
+- Dashboards for HR.
 
 
