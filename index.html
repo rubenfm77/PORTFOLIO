@@ -34,6 +34,13 @@
     --grid: rgba(255,255,255,0.04);
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.35);
   }
+  /* same palette via class, belt-and-braces for the toggle */
+  html.dark {
+    --bg:#0E1014; --panel:#15181F; --ink:#F2F1EC; --slate:#9AA3B2;
+    --hair:#262A33; --hair-2:#1E222A; --accent:#6E92FF; --accent-ink:#A9C0FF;
+    --grid:rgba(255,255,255,0.04);
+    --shadow:0 1px 2px rgba(0,0,0,0.3),0 12px 30px rgba(0,0,0,0.35);
+  }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -418,12 +425,4 @@
         <h2 style="font-family:'Space Grotesk';font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:14px;">
           Analyst by trade, climber by obsession.
         </h2>
-      </div>
-      <div>
-        <p>
-          I work in operations and projects for a major Spanish bank, where most of
-          the job is making data trustworthy inside tightly restricted systems —
-          Power BI, SQL, SharePoint, and a lot of careful modelling before
-          anything reaches a chart.
-        </p>
-        <p>
+      </d
