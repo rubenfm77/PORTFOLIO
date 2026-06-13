@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rubén Fernández · Data Analyst</title>
-<meta name="description" content="Data analyst turning raw operational data into decisions — SQL, Power BI, Python, R. Compensation analytics for an IBEX-35 bank." />
+<meta name="description" content="Data analyst turning raw operational data into decisions — SQL, Power BI, Python, R. Operations &amp; projects analytics for an IBEX-35 bank." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -66,7 +66,7 @@
   /* ── NAV ───────────────────────────────────────── */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    background: var(--bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--hair);
   }
@@ -115,7 +115,7 @@
   }
   .hero h1 em {
     font-style: normal; color: var(--accent);
-    border-bottom: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-bottom: 3px solid var(--accent);
   }
   .lede {
     margin-top: 22px; font-size: clamp(16px, 2vw, 19px);
@@ -184,7 +184,7 @@
     background: var(--panel); box-shadow: var(--shadow); overflow: hidden;
     display: grid; grid-template-columns: 1.05fr 1fr;
   }
-  .feat-media { position: relative; background: var(--hair-2); min-height: 280px; }
+  .feat-media { position: relative; background: var(--hair-2); min-height: 280px; max-height: 420px; }
   .feat-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .feat-tag {
     position: absolute; top: 16px; left: 16px;
@@ -254,10 +254,8 @@
   .foot-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .foot-in span { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--slate); }
 
-  /* reveal — visible by default; JS only adds a subtle entrance if it runs */
-  .reveal { opacity: 1; transform: none; }
-  .js-on .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-  .js-on .reveal.in { opacity: 1; transform: none; }
+  /* content always visible — no entrance animation, nothing can hide it */
+  .reveal { opacity: 1 !important; transform: none !important; }
 
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
@@ -283,7 +281,7 @@
     <span class="eyebrow">Data Analyst · Catalonia</span>
     <h1>I turn raw operational data into decisions people <em>actually use</em>.</h1>
     <p class="lede">
-      Analytics for an IBEX-35 bank by day; SQL, Power BI,
+      Operations and project analytics for an IBEX-35 bank by day; SQL, Power BI,
       Python and R across the stack. I like the unglamorous part — modelling messy
       data correctly so the dashboard on top can be trusted.
     </p>
@@ -355,7 +353,8 @@
     <div class="feat-media">
       <span class="feat-tag">R · H2O AutoML · Power BI</span>
       <img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg"
-           alt="HR attrition Power BI dashboard built from the R model's findings" loading="lazy" />
+           alt="HR attrition Power BI dashboard built from the R model's findings"
+           loading="lazy" style="object-position: top center;" />
     </div>
     <div class="feat-body">
       <span class="kicker mono" style="color:var(--accent)">R · H2O · RANDOM FOREST · GBM · DEEP LEARNING</span>
@@ -411,11 +410,20 @@
   </div>
 </section>
 
-<section id="contact" class="contact wrap">
-  <div class="reveal">
-    <span class="eyebrow" style="justify-content:center;display:inline-flex;">Contact</span>
-    <h2>Let's talk data.</h2>
-    <p>Open to data analyst and BI roles. The fastest way to reach me is email or LinkedIn.</p>
-    <div class="contact-links">
-      <a class="btn btn-primary" href="mailto:Ruben.fernandez.martinez77@gmail.com">Email me</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 style="font-family:'Space Grotesk';font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:14px;">
+          Analyst by trade, climber by obsession.
+        </h2>
+      </div>
+      <div>
+        <p>
+          I work in operations and projects for a major Spanish bank, where most of
+          the job is making data trustworthy inside tightly restricted systems —
+          Power BI, SQL, SharePoint, and a lot of careful modelling before
+          anything reaches a chart.
+        </p>
+        <p>
