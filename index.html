@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rubén Fernández · Data Analyst</title>
+<meta name="description" content="Data analyst turning raw operational data into decisions — SQL, Power BI, Python, R. Operations &amp; projects analytics for an IBEX-35 bank." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #FBFAF8;
+    --panel:     #FFFFFF;
+    --ink:       #15171C;
+    --slate:     #5C6675;
+    --hair:      #E4E2DC;
+    --hair-2:    #ECEAE4;
+    --accent:    #1F4FE0;
+    --accent-ink:#143089;
+    --grid:      rgba(21,23,28,0.045);
+    --shadow:    0 1px 2px rgba(21,23,28,0.04), 0 8px 24px rgba(21,23,28,0.05);
+    --maxw: 1080px;
+  }
+  [data-theme="dark"] {
+    --bg:        #0E1014;
+    --panel:     #15181F;
+    --ink:       #F2F1EC;
+    --slate:     #9AA3B2;
+    --hair:      #262A33;
+    --hair-2:    #1E222A;
+    --accent:    #6E92FF;
+    --accent-ink:#A9C0FF;
+    --grid:      rgba(255,255,255,0.04);
+    --shadow:    0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.35);
+  }
+  /* same palette via class, belt-and-braces for the toggle */
+  html.dark {
+    --bg:#0E1014; --panel:#15181F; --ink:#F2F1EC; --slate:#9AA3B2;
+    --hair:#262A33; --hair-2:#1E222A; --accent:#6E92FF; --accent-ink:#A9C0FF;
+    --grid:rgba(255,255,255,0.04);
+    --shadow:0 1px 2px rgba(0,0,0,0.3),0 12px 30px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    transition: background .4s ease, color .4s ease;
+  }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .eyebrow::before {
+    content: ""; width: 22px; height: 1px; background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ── NAV ───────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .nav-in {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    font-family: "IBM Plex Mono", monospace; font-weight: 600;
+    font-size: 14px; letter-spacing: .02em; color: var(--ink);
+    text-decoration: none;
+  }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a {
+    font-size: 14px; color: var(--slate); text-decoration: none;
+    font-weight: 500; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .theme-btn {
+    background: none; border: 1px solid var(--hair); border-radius: 8px;
+    width: 34px; height: 34px; cursor: pointer; color: var(--ink);
+    display: grid; place-items: center; font-size: 15px;
+    transition: border-color .2s, background .2s;
+  }
+  .theme-btn:hover { border-color: var(--slate); }
+  .nav-cta {
+    background: var(--accent); color: #fff !important; padding: 9px 16px;
+    border-radius: 8px; font-size: 13.5px !important;
+  }
+  .nav-cta:hover { background: var(--accent-ink); }
+  @media (max-width: 620px) { .nav-hide { display: none; } }
+
+  /* ── HERO ──────────────────────────────────────── */
+  .hero {
+    position: relative; padding: 92px 0 64px;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  .hero h1 {
+    font-family: "Space Grotesk", sans-serif; font-weight: 600;
+    font-size: clamp(38px, 6.2vw, 68px); line-height: 1.02;
+    letter-spacing: -0.025em; margin: 22px 0 0; max-width: 16ch;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+  }
+  .lede {
+    margin-top: 22px; font-size: clamp(16px, 2vw, 19px);
+    color: var(--slate); max-width: 56ch;
+  }
+  .hero-cta { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 14.5px; font-weight: 500;
+    padding: 12px 20px; border-radius: 9px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    border: 1px solid transparent; transition: all .2s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+  .btn-ghost:hover { border-color: var(--slate); transform: translateY(-1px); }
+
+  /* instrument panel */
+  .panel-strip {
+    margin-top: 54px; border: 1px solid var(--hair); border-radius: 14px;
+    background: var(--panel); box-shadow: var(--shadow);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+  }
+  .stat { padding: 22px 24px; border-right: 1px solid var(--hair-2); }
+  .stat:last-child { border-right: none; }
+  .stat .k {
+    font-family: "Space Grotesk", sans-serif; font-weight: 600;
+    font-size: 27px; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .stat .l {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--slate);
+    margin-top: 6px;
+  }
+  @media (max-width: 720px) {
+    .panel-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--hair-2); }
+  }
+
+  /* ── STACK ─────────────────────────────────────── */
+  .stack { padding: 56px 0 8px; }
+  .stack-row {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+  }
+  .chip {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+    color: var(--ink); background: var(--panel);
+    border: 1px solid var(--hair); border-radius: 8px; padding: 8px 14px;
+  }
+  .chip b { color: var(--accent); font-weight: 600; }
+
+  /* ── SECTION HEADERS ───────────────────────────── */
+  section { padding: 60px 0; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .sec-head h2 {
+    font-family: "Space Grotesk", sans-serif; font-weight: 600;
+    font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.02em; margin-top: 14px;
+  }
+  .sec-head .count { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--slate); }
+
+  /* ── FEATURED ──────────────────────────────────── */
+  .feat {
+    margin-top: 30px; border: 1px solid var(--hair); border-radius: 16px;
+    background: var(--panel); box-shadow: var(--shadow); overflow: hidden;
+    display: grid; grid-template-columns: 1.05fr 1fr;
+  }
+  .feat-media { position: relative; background: var(--hair-2); min-height: 280px; max-height: 420px; }
+  .feat-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .feat-tag {
+    position: absolute; top: 16px; left: 16px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; background: var(--accent); color: #fff;
+    padding: 6px 11px; border-radius: 7px;
+  }
+  .feat-body { padding: 34px; display: flex; flex-direction: column; }
+  .feat-body h3 {
+    font-family: "Space Grotesk", sans-serif; font-weight: 600;
+    font-size: 25px; letter-spacing: -0.015em; margin: 12px 0 0;
+  }
+  .feat-body p { color: var(--slate); margin-top: 12px; font-size: 15.5px; }
+  .feat-metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin: 22px 0; border: 1px solid var(--hair-2); border-radius: 10px; overflow: hidden;
+  }
+  .feat-metrics div { padding: 13px 14px; border-right: 1px solid var(--hair-2); }
+  .feat-metrics div:last-child { border-right: none; }
+  .feat-metrics .fk { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; }
+  .feat-metrics .fl { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
+  .feat-links { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; padding-top: 14px; }
+  .tlink {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+    color: var(--accent); text-decoration: none; display: inline-flex; gap: 6px; align-items: center;
+  }
+  .tlink:hover { color: var(--accent-ink); text-decoration: underline; }
+  @media (max-width: 800px) { .feat { grid-template-columns: 1fr; } .feat-media { min-height: 200px; } }
+
+  /* ── PROJECT GRID ──────────────────────────────── */
+  .grid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 720px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid var(--hair); border-radius: 14px; background: var(--panel);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--slate); }
+  .card-media { aspect-ratio: 16/10; background: var(--hair-2); overflow: hidden; }
+  .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .card:hover .card-media img { transform: scale(1.04); }
+  .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+  .card .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+  .card h3 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; margin: 7px 0 0; letter-spacing: -0.01em; }
+  .card p { color: var(--slate); font-size: 14px; margin-top: 8px; flex: 1; }
+  .card a.tlink { margin-top: 14px; }
+
+  /* ── ABOUT ─────────────────────────────────────── */
+  .about { background: var(--panel); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 22px; } }
+  .about p { color: var(--slate); font-size: 16px; margin-top: 14px; max-width: 60ch; }
+  .about p strong { color: var(--ink); font-weight: 600; }
+  .about-side { font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  .about-side .row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--hair-2); gap: 16px; }
+  .about-side .row span:first-child { color: var(--slate); }
+  .about-side .row span:last-child { color: var(--ink); text-align: right; }
+
+  /* ── CONTACT ───────────────────────────────────── */
+  .contact { text-align: center; padding: 84px 0; }
+  .contact h2 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.025em; }
+  .contact p { color: var(--slate); margin: 14px auto 0; max-width: 48ch; font-size: 17px; }
+  .contact-links { margin-top: 30px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid var(--hair); padding: 26px 0; }
+  .foot-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .foot-in span { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--slate); }
+
+  /* content always visible — no entrance animation, nothing can hide it */
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="#top" class="brand">Ruben<span>.FM</span></a>
+    <div class="nav-links">
+      <a href="#work" class="nav-hide">Work</a>
+      <a href="#about" class="nav-hide">About</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Data Analyst · Catalonia</span>
+    <h1>I turn raw operational data into decisions people <em>actually use</em>.</h1>
+    <p class="lede">
+      Operations and project analytics for an IBEX-35 bank by day; SQL, Power BI,
+      Python and R across the stack. I like the unglamorous part — modelling messy
+      data correctly so the dashboard on top can be trusted.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See the work →</a>
+      <a href="https://github.com/rubenfm77" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+
+    <div class="panel-strip" aria-label="Key facts">
+      <div class="stat"><div class="k">5+ yrs</div><div class="l">Analytics</div></div>
+      <div class="stat"><div class="k">IBEX-35</div><div class="l">Current sector</div></div>
+      <div class="stat"><div class="k">SQL · BI</div><div class="l">Core stack</div></div>
+      <div class="stat"><div class="k">ML</div><div class="l">Python / R</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap stack reveal">
+  <span class="eyebrow">Toolkit</span>
+  <div class="stack-row">
+    <span class="chip"><b>SQL</b> · query &amp; modelling</span>
+    <span class="chip"><b>Power BI</b> · DAX, data models</span>
+    <span class="chip"><b>Python</b> · pandas, scikit-learn</span>
+    <span class="chip"><b>R</b> · statistical modelling</span>
+    <span class="chip"><b>Tableau</b> · visual analytics</span>
+    <span class="chip"><b>Streamlit</b> · data apps</span>
+  </div>
+</div>
+
+<section id="work" class="wrap">
+  <div class="sec-head reveal">
+    <div><span class="eyebrow">Featured</span><h2>Cycling Performance ML</h2></div>
+  </div>
+
+  <div class="feat reveal">
+    <div class="feat-media">
+      <span class="feat-tag">Live app + ML pipeline</span>
+      <img src="https://raw.githubusercontent.com/rubenfm77/cycling-performance-ml/main/pmc_full.png"
+           alt="Performance Management Chart from the cycling analytics pipeline" loading="lazy" />
+    </div>
+    <div class="feat-body">
+      <span class="kicker mono" style="color:var(--accent)">PYTHON · SCIKIT-LEARN · STREAMLIT</span>
+      <h3>Six years of training data, modelled end to end</h3>
+      <p>
+        A full pipeline over 6.5 years of my own riding: data from Strava,
+        TrainingPeaks and Intervals.icu joined into one dataset, engineered
+        features, and models that explain what actually drives threshold
+        gains. A live dashboard turns it into weekly decisions on the phone.
+      </p>
+      <div class="feat-metrics">
+        <div><div class="fk">964</div><div class="fl">Sessions</div></div>
+        <div><div class="fk">130k</div><div class="fl">Total TSS</div></div>
+        <div><div class="fk">0.99</div><div class="fl">Model R²</div></div>
+      </div>
+      <div class="feat-links">
+        <a class="tlink" href="https://cycling-performance-ml-gwl7kzbkctmdgnatg2jvnt.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
+        <a class="tlink" href="https://github.com/rubenfm77/cycling-performance-ml" target="_blank" rel="noopener">↗ Source code</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:8px;">
+  <div class="sec-head reveal">
+    <div><span class="eyebrow">MSc capstone</span><h2>Employee Attrition — ML in R</h2></div>
+  </div>
+
+  <div class="feat reveal">
+    <div class="feat-media">
+      <span class="feat-tag">R · H2O AutoML · Power BI</span>
+      <img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg"
+           alt="HR attrition Power BI dashboard built from the R model's findings"
+           loading="lazy" style="object-position: top center;" />
+    </div>
+    <div class="feat-body">
+      <span class="kicker mono" style="color:var(--accent)">R · H2O · RANDOM FOREST · GBM · DEEP LEARNING</span>
+      <h3>Predicting who leaves — and giving HR something to act on</h3>
+      <p>
+        End-to-end capstone on the IBM HR dataset (1,470 employees, 35
+        variables): full exploratory analysis, class balancing and outlier
+        handling, then a model bake-off across H2O AutoML, Random Forest, GBM
+        and Deep Learning. Overtime, job role, pay and work environment came
+        out as the strongest churn drivers — translated into a Power BI
+        dashboard so HR can act before people leave.
+      </p>
+      <div class="feat-metrics">
+        <div><div class="fk">0.84</div><div class="fl">Best AUC</div></div>
+        <div><div class="fk">4</div><div class="fl">Model families</div></div>
+        <div><div class="fk">1,470</div><div class="fl">Employees</div></div>
+      </div>
+      <div class="feat-links">
+        <a class="tlink" href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" rel="noopener">↗ R notebook (TFM)</a>
+        <a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Power BI dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:8px;">
+  <div class="sec-head reveal">
+    <div><span class="eyebrow">More projects</span><h2>Selected work</h2></div>
+    <span class="count">02 / projects</span>
+  </div>
+
+  <div class="grid">
+<article class="card reveal">
+      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg" alt="Executive KPI dashboard" loading="lazy" /></div>
+      <div class="card-body">
+        <span class="kicker">Power BI · DAX</span>
+        <h3>Executive KPI Dashboards</h3>
+        <p>Consolidated several source systems into one Power BI model and redesigned it for clarity — monitoring margin, budget compliance and new production in a single trusted view.</p>
+        <a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Repo</a>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg" alt="Tableau visual analytics" loading="lazy" /></div>
+      <div class="card-body">
+        <span class="kicker">Tableau</span>
+        <h3>Visual Analytics</h3>
+        <p>Interactive Tableau views exploring workforce demographics and market segments through linked, drill-down dashboards.</p>
+        <a class="tlink" href="https://github.com/rubenfm77/TABLEAU" target="_blank" rel="noopener">↗ Repo</a>
+      </div>
+    </article>
+  </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 style="font-family:'Space Grotesk';font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:14px;">
+          Analyst by trade, climber by obsession.
+        </h2>
+      </div>
+      <div>
+        <p>
+          I work in operations and projects for a major Spanish bank, where most of
+          the job is making data trustworthy inside tightly restricted systems —
+          Power BI, SQL, SharePoint, and a lot of careful modelling before
+          anything reaches a chart.
+        </p>
+        <p>
+          Away from the desk I'm a road cyclist and a <strong>pure climber</strong>
+          in the mountains around Barcelona. That's not a footnote: the cycling
+          ML project above is real personal data, and the same instinct drives
+          both — <strong>measure honestly, model carefully, then decide</strong>.
+        </p>
+        <div class="about-side" style="margin-top:26px;">
+          <div class="row"><span>Based in</span><span>Catalonia, Spain</span></div>
+          <div class="row"><span>Focus</span><span>Analytics</span></div>
+          <div class="row"><span>Stack</span><span>SQL · Power BI · Python · R</span></div>
+          <div class="row"><span>Open to</span><span>Data analyst roles</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact wrap">
+  <div class="reveal">
+    <span class="eyebrow" style="justify-content:center;display:inline-flex;">Contact</span>
+    <h2>Let's talk data.</h2>
+    <p>Open to data analyst and BI roles. The fastest way to reach me is email or LinkedIn.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:Ruben.fernandez.martinez77@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/rubenfm77" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Rubén Fernández Martínez</span>
+    <span>Built &amp; hosted on GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle — sets both a data attribute and a class, logs each click.
+  (function () {
+    function applyDark(on) {
+      var el = document.documentElement;
+      if (on) { el.setAttribute("data-theme", "dark"); el.classList.add("dark"); }
+      else { el.removeAttribute("data-theme"); el.classList.remove("dark"); }
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyDark(saved === "dark" || (!saved && sysDark));
+
+    function wire() {
+      var btn = document.getElementById("themeBtn");
+      if (!btn) { console.log("themeBtn not found"); return; }
+      function setIcon() {
+        var dark = document.documentElement.classList.contains("dark");
+        btn.textContent = dark ? "\u25CB" : "\u25D0";
+      }
+      setIcon();
+      btn.addEventListener("click", function () {
+        var dark = document.documentElement.classList.contains("dark");
+        applyDark(!dark);
+        try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+        setIcon();
+        console.log("theme ->", document.documentElement.classList.contains("dark") ? "dark" : "light");
+      });
+    }
+    if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", wire); }
+    else { wire(); }
+  })();
+
+// (scroll-reveal removed — content is always visible)
+</script>
+</body>
+</html>
