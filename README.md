@@ -1,2 +1,11 @@
 # PORTFOLIO
-Some stuff in R and Python for Machine Leaning. Some queries in SQL and a few Dashboards in Power BI and Tableau.
+
+## ML projects: 
+- R for employee attrition plus a dashboard to monitor KPIs
+- Python ML for cycling data and the final app deployment: https://cycling-performance-ml-gwl7kzbkctmdgnatg2jvnt.streamlit.app/
+
+## Power BI/ Tableau Dashboards
+- Dashboards for medical data.
+- Dashboards for businesses.
+
+
