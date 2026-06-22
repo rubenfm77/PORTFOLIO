@@ -331,6 +331,8 @@
     <span class="chip"><b>R</b> · statistical modelling</span>
     <span class="chip"><b>Tableau</b> · visual analytics</span>
     <span class="chip"><b>Streamlit</b> · data apps</span>
+    <span class="chip"><b>PyTorch</b> · deep learning</span>
+    <span class="chip"><b>MLOps</b> · drift &amp; monitoring</span>
   </div>
 </div>
 
@@ -405,17 +407,52 @@
 
 <section class="wrap" style="padding-top:8px;">
   <div class="sec-head reveal">
+    <div><span class="eyebrow">MLOps Engineering</span><h2>ICU Sepsis Early-Prediction</h2></div>
+  </div>
+
+  <div class="feat reveal">
+    <div class="feat-media">
+      <span class="feat-tag">PyTorch · Drift Detection · Clinical ML</span>
+      <img src="https://raw.githubusercontent.com/rubenfm77/icu-sepsis-prediction/main/reports/degradation_plot.png"
+           alt="Sepsis model degradation: AUPRC decay and PSI spike after sensor recalibration"
+           loading="lazy" />
+    </div>
+    <div class="feat-body">
+      <span class="kicker mono" style="color:var(--accent)">PYTORCH · GRU · MLOPS · DRIFT DETECTION</span>
+      <h3>Predicting sepsis onset — then keeping the model honest in production</h3>
+      <p>
+        End-to-end clinical ML pipeline: a two-layer GRU trained on 12-hour ICU
+        time-series windows (PhysioNet 2019 schema) to flag sepsis risk 1–6 hours
+        early. A full MLOps layer monitors predictions in real time, computes
+        Population Stability Index per feature, and fires automated retrain
+        decisions. The degradation simulation catches sensor-recalibration drift
+        on the very first affected batch — zero false retrains in the clean phase.
+      </p>
+      <div class="feat-metrics">
+        <div><div class="fk">Batch 6</div><div class="fl">Drift detected</div></div>
+        <div><div class="fk">PSI ×11</div><div class="fl">Spike at onset</div></div>
+        <div><div class="fk">0 false</div><div class="fl">Retrains (clean)</div></div>
+      </div>
+      <div class="feat-links">
+        <a class="tlink" href="https://github.com/rubenfm77/icu-sepsis-prediction" target="_blank" rel="noopener">↗ Source code &amp; postmortem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:8px;">
+  <div class="sec-head reveal">
     <div><span class="eyebrow">More projects</span><h2>Selected work</h2></div>
-    <span class="count">02 / projects</span>
+    <span class="count">04 / projects</span>
   </div>
 
   <div class="grid">
-<article class="card reveal">
-      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg" alt="Executive KPI dashboard" loading="lazy" /></div>
+    <article class="card reveal">
+      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/SALES1.jpg" alt="Executive KPI dashboard" loading="lazy" /></div>
       <div class="card-body">
-        <span class="kicker">Power BI · DAX</span>
+        <span class="kicker">Power BI · DAX · SQL Server</span>
         <h3>Executive KPI Dashboards</h3>
-        <p>Consolidated several source systems into one Power BI model and redesigned it for clarity — monitoring margin, budget compliance and new production in a single trusted view.</p>
+        <p>Star-schema model joining sales, budget and customer data in SQL Server — surfaced in Power BI with YoY analysis, customer segmentation (VIP / Regular / New), and seasonality breakdowns.</p>
         <a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Repo</a>
       </div>
     </article>
@@ -425,11 +462,30 @@
       <div class="card-body">
         <span class="kicker">Tableau</span>
         <h3>Visual Analytics</h3>
-        <p>Interactive Tableau views exploring workforce demographics and market segments through linked, drill-down dashboards.</p>
+        <p>Interactive Tableau views exploring workforce demographics and market segments through linked, drill-down dashboards with KPI scorecards.</p>
         <a class="tlink" href="https://github.com/rubenfm77/TABLEAU" target="_blank" rel="noopener">↗ Repo</a>
       </div>
     </article>
-  </div>
+
+    <article class="card reveal">
+      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/main/SALES.jpg" alt="SQL Server advanced analytics" loading="lazy" /></div>
+      <div class="card-body">
+        <span class="kicker">SQL Server · Window Functions · CTEs</span>
+        <h3>Advanced SQL Analytics</h3>
+        <p>Production-ready SQL patterns: running totals, YoY performance, part-to-whole contribution, RFM-style customer segmentation — all on a real sales warehouse schema.</p>
+        <a class="tlink" href="https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS" target="_blank" rel="noopener">↗ Repo</a>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/Netflix_SQL/main/logo.png" alt="Netflix SQL analysis" loading="lazy" /></div>
+      <div class="card-body">
+        <span class="kicker">PostgreSQL</span>
+        <h3>Netflix Catalog Analysis</h3>
+        <p>15 analytical SQL queries on Netflix's full catalog: content mix, top-producing countries, genre distribution, rating profiles, and keyword-based content classification.</p>
+        <a class="tlink" href="https://github.com/rubenfm77/Netflix_SQL" target="_blank" rel="noopener">↗ Repo</a>
+      </div>
+    </article>
   </div>
 </section>
 
