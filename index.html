@@ -333,6 +333,8 @@
     <span class="chip"><b>Streamlit</b> · data apps</span>
     <span class="chip"><b>PyTorch</b> · deep learning</span>
     <span class="chip"><b>MLOps</b> · drift &amp; monitoring</span>
+    <span class="chip"><b>ESM-2</b> · protein AI</span>
+    <span class="chip"><b>RDKit</b> · cheminformatics</span>
   </div>
 </div>
 
@@ -435,6 +437,62 @@
       </div>
       <div class="feat-links">
         <a class="tlink" href="https://github.com/rubenfm77/icu-sepsis-prediction" target="_blank" rel="noopener">↗ Source code &amp; postmortem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:8px;">
+  <div class="sec-head reveal">
+    <div><span class="eyebrow">AI · Bioinformatics</span><h2>De Novo Drug Design Pipeline</h2></div>
+  </div>
+
+  <div class="feat reveal">
+    <div class="feat-media" style="background:linear-gradient(135deg,#061420 0%,#0a2236 45%,#071c10 100%);display:flex;align-items:center;justify-content:center;">
+      <span class="feat-tag">ESM-2 · RDKit · Live Dashboard</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:2rem;width:100%;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#00d4ff;opacity:.88;text-align:center;line-height:1.8;letter-spacing:.02em;">
+          CC(NC(=O)c1ccc(F)cc1)<br>C(=O)N1CC[C@@H]1C(=O)<br>Nc1nccs1
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#39d353;letter-spacing:.12em;text-align:center;opacity:.9;">
+          QED 0.79 &nbsp;·&nbsp; SA 1.71 &nbsp;·&nbsp; −9.1 kcal/mol
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:280px;margin-top:4px;">
+          <div style="background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);border-radius:8px;padding:10px 6px;text-align:center;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#00d4ff;">6</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6b8a9a;letter-spacing:.07em;text-transform:uppercase;margin-top:4px;">Targets</div>
+          </div>
+          <div style="background:rgba(57,211,83,.07);border:1px solid rgba(57,211,83,.18);border-radius:8px;padding:10px 6px;text-align:center;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#39d353;">320</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6b8a9a;letter-spacing:.07em;text-transform:uppercase;margin-top:4px;">Emb. dim</div>
+          </div>
+          <div style="background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);border-radius:8px;padding:10px 6px;text-align:center;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#00d4ff;">€0</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6b8a9a;letter-spacing:.07em;text-transform:uppercase;margin-top:4px;">Infra cost</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-body">
+      <span class="kicker mono" style="color:var(--accent)">ESM-2 · PYTORCH · RDKIT · STREAMLIT</span>
+      <h3>Protein embeddings → drug candidate in one pipeline</h3>
+      <p>
+        End-to-end de novo drug design at zero infrastructure cost: a protein
+        target (PDB ID) goes in, a scored drug candidate comes out. Meta's
+        ESM-2 language model encodes the amino acid sequence into a 320-dimensional
+        embedding; embedding-guided fragment assembly generates a candidate molecule;
+        RDKit evaluates it on QED, SA Score, Lipinski's Rule of Five and docking
+        score. Pre-computed on Colab free GPU for 6 disease targets — COVID-19
+        Mpro, BRAF V600E, EGFR, CDK2 and more.
+      </p>
+      <div class="feat-metrics">
+        <div><div class="fk">0.79</div><div class="fl">Best QED</div></div>
+        <div><div class="fk">−9.1</div><div class="fl">Best dock (kcal/mol)</div></div>
+        <div><div class="fk">5 / 6</div><div class="fl">Lipinski pass</div></div>
+      </div>
+      <div class="feat-links">
+        <a class="tlink" href="https://drug-discovery-ai-hrrtnzkb64gakodba5vahx.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
+        <a class="tlink" href="https://github.com/rubenfm77/drug-discovery-ai" target="_blank" rel="noopener">↗ Source code</a>
       </div>
     </div>
   </div>
