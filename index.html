@@ -533,11 +533,12 @@
       <p>
         A monorepo demonstrating three production-honest delivery options for an employee
         compensation self-service portal — all reading from the same synthetic CSV dataset
-        (200 employees, seed 42) through a shared Python core. The Streamlit layer covers
-        role-based views (employee / manager / HR / admin); the FastAPI layer adds opaque
-        token auth and role guards; the Power BI layer documents a full star schema, DAX
-        measures, Row-Level Security via <code>USERPRINCIPALNAME()</code>, and a DPO-ready
-        pitch note comparing all three options.
+        (200 employees, seed 42) through a shared Python core.
+        <strong>Streamlit</strong> covers role-based views (employee / manager / HR / admin) with bcrypt auth;
+        <strong>FastAPI + React</strong> deploys as a fully static Vite app with bundled demo data (no backend needed on Vercel);
+        <strong>Power BI</strong> is a complete design deliverable — star schema, DAX measures,
+        Row-Level Security via <code>USERPRINCIPALNAME()</code>, and a DPO-ready pitch note
+        comparing all three options ready to hand to a client.
       </p>
       <div class="feat-metrics">
         <div><div class="fk">3</div><div class="fl">Delivery layers</div></div>
@@ -545,8 +546,9 @@
         <div><div class="fk">0</div><div class="fl">External API calls</div></div>
       </div>
       <div class="feat-links">
+        <a class="tlink" id="comp-streamlit-link" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ Streamlit live app</a>
+        <a class="tlink" id="comp-react-link" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ React live demo</a>
         <a class="tlink" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ Source code</a>
-        <a class="tlink" id="comp-live-link" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ Live dashboard (deploying…)</a>
       </div>
     </div>
   </div>
