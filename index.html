@@ -9,723 +9,746 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --bg:        #FBFAF8;
-    --panel:     #FFFFFF;
-    --ink:       #15171C;
-    --slate:     #5C6675;
-    --hair:      #E4E2DC;
-    --hair-2:    #ECEAE4;
-    --accent:    #1F4FE0;
-    --accent-ink:#143089;
-    --grid:      rgba(21,23,28,0.045);
-    --shadow:    0 1px 2px rgba(21,23,28,0.04), 0 8px 24px rgba(21,23,28,0.05);
-    --maxw: 1080px;
-  }
-  [data-theme="dark"] {
-    --bg:        #0E1014;
-    --panel:     #15181F;
-    --ink:       #F2F1EC;
-    --slate:     #9AA3B2;
-    --hair:      #262A33;
-    --hair-2:    #1E222A;
-    --accent:    #6E92FF;
-    --accent-ink:#A9C0FF;
-    --grid:      rgba(255,255,255,0.04);
-    --shadow:    0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.35);
-  }
-  /* same palette via class, belt-and-braces for the toggle */
-  html.dark {
-    --bg:#0E1014; --panel:#15181F; --ink:#F2F1EC; --slate:#9AA3B2;
-    --hair:#262A33; --hair-2:#1E222A; --accent:#6E92FF; --accent-ink:#A9C0FF;
-    --grid:rgba(255,255,255,0.04);
-    --shadow:0 1px 2px rgba(0,0,0,0.3),0 12px 30px rgba(0,0,0,0.35);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { animation: none !important; transition: none !important; }
-  }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    transition: background .4s ease, color .4s ease;
-  }
-  .mono { font-family: "IBM Plex Mono", monospace; }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
-
-  .eyebrow {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-    display: inline-flex; align-items: center; gap: 9px;
-  }
-  .eyebrow::before {
-    content: ""; width: 22px; height: 1px; background: var(--accent);
-    display: inline-block;
-  }
-
-  /* ── NAV ───────────────────────────────────────── */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: var(--bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--hair);
-  }
-  .nav-in {
-    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .brand {
-    font-family: "IBM Plex Mono", monospace; font-weight: 600;
-    font-size: 14px; letter-spacing: .02em; color: var(--ink);
-    text-decoration: none;
-  }
-  .brand span { color: var(--accent); }
-  .nav-links { display: flex; align-items: center; gap: 26px; }
-  .nav-links a {
-    font-size: 14px; color: var(--slate); text-decoration: none;
-    font-weight: 500; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .theme-btn {
-    background: none; border: 1px solid var(--hair); border-radius: 8px;
-    width: 34px; height: 34px; cursor: pointer; color: var(--ink);
-    display: grid; place-items: center; font-size: 15px;
-    transition: border-color .2s, background .2s;
-  }
-  .theme-btn:hover { border-color: var(--slate); }
-  .nav-cta {
-    background: var(--accent); color: #fff !important; padding: 9px 16px;
-    border-radius: 8px; font-size: 13.5px !important;
-  }
-  .nav-cta:hover { background: var(--accent-ink); }
-  @media (max-width: 620px) { .nav-hide { display: none; } }
-
-  /* ── HERO ──────────────────────────────────────── */
-  .hero {
-    position: relative; padding: 92px 0 64px;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 34px 34px;
-  }
-  .hero h1 {
-    font-family: "Space Grotesk", sans-serif; font-weight: 600;
-    font-size: clamp(38px, 6.2vw, 68px); line-height: 1.02;
-    letter-spacing: -0.025em; margin: 22px 0 0; max-width: 16ch;
-  }
-  .hero h1 em {
-    font-style: normal; color: var(--accent);
-    border-bottom: 3px solid var(--accent);
-  }
-  .lede {
-    margin-top: 22px; font-size: clamp(16px, 2vw, 19px);
-    color: var(--slate); max-width: 56ch;
-  }
-  .hero-cta { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 14.5px; font-weight: 500;
-    padding: 12px 20px; border-radius: 9px; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
-    border: 1px solid transparent; transition: all .2s;
-  }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
-  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
-  .btn-ghost:hover { border-color: var(--slate); transform: translateY(-1px); }
-
-  /* instrument panel */
-  .panel-strip {
-    margin-top: 54px; border: 1px solid var(--hair); border-radius: 14px;
-    background: var(--panel); box-shadow: var(--shadow);
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    overflow: hidden;
-  }
-  .stat { padding: 22px 24px; border-right: 1px solid var(--hair-2); }
-  .stat:last-child { border-right: none; }
-  .stat .k {
-    font-family: "Space Grotesk", sans-serif; font-weight: 600;
-    font-size: 27px; letter-spacing: -0.02em; color: var(--ink);
-  }
-  .stat .l {
-    font-family: "IBM Plex Mono", monospace; font-size: 11px;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--slate);
-    margin-top: 6px;
-  }
-  @media (max-width: 720px) {
-    .panel-strip { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(2) { border-right: none; }
-    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--hair-2); }
-  }
-
-  /* ── STACK ─────────────────────────────────────── */
-  .stack { padding: 56px 0 8px; }
-  .stack-row {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
-  }
-  .chip {
-    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
-    color: var(--ink); background: var(--panel);
-    border: 1px solid var(--hair); border-radius: 8px; padding: 8px 14px;
-  }
-  .chip b { color: var(--accent); font-weight: 600; }
-
-  /* ── SECTION HEADERS ───────────────────────────── */
-  section { padding: 60px 0; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .sec-head h2 {
-    font-family: "Space Grotesk", sans-serif; font-weight: 600;
-    font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.02em; margin-top: 14px;
-  }
-  .sec-head .count { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--slate); }
-
-  /* ── FEATURED ──────────────────────────────────── */
-  .feat {
-    margin-top: 30px; border: 1px solid var(--hair); border-radius: 16px;
-    background: var(--panel); box-shadow: var(--shadow); overflow: hidden;
-    display: grid; grid-template-columns: 1.05fr 1fr;
-  }
-  .feat > * { min-width: 0; }
-  .feat-media { position: relative; background: var(--hair-2); min-height: 280px; max-height: 420px; }
-  .feat-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .feat-tag {
-    position: absolute; top: 16px; left: 16px;
-    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em;
-    text-transform: uppercase; background: var(--accent); color: #fff;
-    padding: 6px 11px; border-radius: 7px;
-  }
-  .feat-body { padding: 34px; display: flex; flex-direction: column; }
-  .feat-body h3 {
-    font-family: "Space Grotesk", sans-serif; font-weight: 600;
-    font-size: 25px; letter-spacing: -0.015em; margin: 12px 0 0;
-  }
-  .feat-body p { color: var(--slate); margin-top: 12px; font-size: 15.5px; }
-  .feat-metrics {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-    margin: 22px 0; border: 1px solid var(--hair-2); border-radius: 10px; overflow: hidden;
-  }
-  .feat-metrics div { padding: 13px 14px; border-right: 1px solid var(--hair-2); }
-  .feat-metrics div:last-child { border-right: none; }
-  .feat-metrics .fk { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; }
-  .feat-metrics .fl { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
-  .feat-links { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; padding-top: 14px; }
-  .tlink {
-    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
-    color: var(--accent); text-decoration: none; display: inline-flex; gap: 6px; align-items: center;
-  }
-  .tlink:hover { color: var(--accent-ink); text-decoration: underline; }
-  @media (max-width: 800px) {
-    .feat { grid-template-columns: 1fr !important; }
-    .feat-media { min-height: 200px; max-height: 320px; }
-  }
-
-  /* ── PROJECT GRID ──────────────────────────────── */
-  .grid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 720px; }
-  @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    border: 1px solid var(--hair); border-radius: 14px; background: var(--panel);
-    overflow: hidden; display: flex; flex-direction: column;
-    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-  }
-  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--slate); }
-  .card-media { aspect-ratio: 16/10; background: var(--hair-2); overflow: hidden; }
-  .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-  .card:hover .card-media img { transform: scale(1.04); }
-  .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
-  .card .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
-  .card h3 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; margin: 7px 0 0; letter-spacing: -0.01em; }
-  .card p { color: var(--slate); font-size: 14px; margin-top: 8px; flex: 1; }
-  .card a.tlink { margin-top: 14px; }
-
-  /* ── ABOUT ─────────────────────────────────────── */
-  .about { background: var(--panel); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
-  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 22px; } }
-  .about p { color: var(--slate); font-size: 16px; margin-top: 14px; max-width: 60ch; }
-  .about p strong { color: var(--ink); font-weight: 600; }
-  .about-side { font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .about-side .row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--hair-2); gap: 16px; }
-  .about-side .row span:first-child { color: var(--slate); }
-  .about-side .row span:last-child { color: var(--ink); text-align: right; }
-
-  /* ── CONTACT ───────────────────────────────────── */
-  .contact { text-align: center; padding: 84px 0; }
-  .contact h2 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.025em; }
-  .contact p { color: var(--slate); margin: 14px auto 0; max-width: 48ch; font-size: 17px; }
-  .contact-links { margin-top: 30px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-  footer { border-top: 1px solid var(--hair); padding: 26px 0; }
-  .foot-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .foot-in span { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--slate); }
-
-  /* content always visible — no entrance animation, nothing can hide it */
-  .reveal { opacity: 1 !important; transform: none !important; }
-
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
-  }
-
-  /* prevent any horizontal overflow & wrap long words on small screens */
-  html, body { overflow-x: hidden; }
-  .feat-body h3, .feat-body p, .hero h1 { overflow-wrap: anywhere; word-break: break-word; }
-  @media (max-width: 560px) {
-    .feat-body { padding: 20px; }
-    .feat-body h3 { font-size: 22px; }
-    .feat-metrics { grid-template-columns: 1fr; }
-    .feat-metrics div { border-right: none; border-bottom: 1px solid var(--hair-2); }
-    .feat-metrics div:last-child { border-bottom: none; }
-    .wrap { padding: 0 18px; }
-  }
+:root {
+--bg: #FBFAF8;
+--panel: #FFFFFF;
+--ink: #15171C;
+--slate: #5C6675;
+--hair: #E4E2DC;
+--hair-2: #ECEAE4;
+--accent: #1F4FE0;
+--accent-ink:#143089;
+--grid: rgba(21,23,28,0.045);
+--shadow: 0 1px 2px rgba(21,23,28,0.04), 0 8px 24px rgba(21,23,28,0.05);
+--maxw: 1080px;
+}
+[data-theme="dark"] {
+--bg: #0E1014;
+--panel: #15181F;
+--ink: #F2F1EC;
+--slate: #9AA3B2;
+--hair: #262A33;
+--hair-2: #1E222A;
+--accent: #6E92FF;
+--accent-ink:#A9C0FF;
+--grid: rgba(255,255,255,0.04);
+--shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.35);
+}
+html.dark {
+--bg:#0E1014; --panel:#15181F; --ink:#F2F1EC; --slate:#9AA3B2;
+--hair:#262A33; --hair-2:#1E222A; --accent:#6E92FF; --accent-ink:#A9C0FF;
+--grid:rgba(255,255,255,0.04);
+--shadow:0 1px 2px rgba(0,0,0,0.3),0 12px 30px rgba(0,0,0,0.35);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+* { animation: none !important; transition: none !important; }
+}
+body {
+background: var(--bg);
+color: var(--ink);
+font-family: "IBM Plex Sans", system-ui, sans-serif;
+line-height: 1.55;
+-webkit-font-smoothing: antialiased;
+transition: background .4s ease, color .4s ease;
+}
+.mono { font-family: "IBM Plex Mono", monospace; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+.eyebrow {
+font-family: "IBM Plex Mono", monospace;
+font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+color: var(--accent); font-weight: 500;
+display: inline-flex; align-items: center; gap: 9px;
+}
+.eyebrow::before {
+content: ""; width: 22px; height: 1px; background: var(--accent);
+display: inline-block;
+}
+/* ── NAV ───────────────────────────────────────── */
+nav {
+position: sticky; top: 0; z-index: 50;
+background: var(--bg);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--hair);
+}
+.nav-in {
+max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+font-family: "IBM Plex Mono", monospace; font-weight: 600;
+font-size: 14px; letter-spacing: .02em; color: var(--ink);
+text-decoration: none;
+}
+.brand span { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a {
+font-size: 14px; color: var(--slate); text-decoration: none;
+font-weight: 500; transition: color .2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.theme-btn {
+background: none; border: 1px solid var(--hair); border-radius: 8px;
+width: 34px; height: 34px; cursor: pointer; color: var(--ink);
+display: grid; place-items: center; font-size: 15px;
+transition: border-color .2s, background .2s;
+}
+.theme-btn:hover { border-color: var(--slate); }
+.nav-cta {
+background: var(--accent); color: #fff !important; padding: 9px 16px;
+border-radius: 8px; font-size: 13.5px !important;
+}
+.nav-cta:hover { background: var(--accent-ink); }
+@media (max-width: 620px) { .nav-hide { display: none; } }
+/* ── HERO ──────────────────────────────────────── */
+.hero {
+position: relative; padding: 92px 0 64px;
+background-image:
+linear-gradient(var(--grid) 1px, transparent 1px),
+linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+background-size: 34px 34px;
+}
+.hero h1 {
+font-family: "Space Grotesk", sans-serif; font-weight: 600;
+font-size: clamp(38px, 6.2vw, 68px); line-height: 1.02;
+letter-spacing: -0.025em; margin: 22px 0 0; max-width: 16ch;
+}
+.hero h1 em {
+font-style: normal; color: var(--accent);
+border-bottom: 3px solid var(--accent);
+}
+.lede {
+margin-top: 22px; font-size: clamp(16px, 2vw, 19px);
+color: var(--slate); max-width: 56ch;
+}
+.hero-cta { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+font-family: "IBM Plex Sans", sans-serif; font-size: 14.5px; font-weight: 500;
+padding: 12px 20px; border-radius: 9px; text-decoration: none;
+display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+border: 1px solid transparent; transition: all .2s;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-ink); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+.btn-ghost:hover { border-color: var(--slate); transform: translateY(-1px); }
+/* instrument panel */
+.panel-strip {
+margin-top: 54px; border: 1px solid var(--hair); border-radius: 14px;
+background: var(--panel); box-shadow: var(--shadow);
+display: grid; grid-template-columns: repeat(4, 1fr);
+overflow: hidden;
+}
+.stat { padding: 22px 24px; border-right: 1px solid var(--hair-2); }
+.stat:last-child { border-right: none; }
+.stat .k {
+font-family: "Space Grotesk", sans-serif; font-weight: 600;
+font-size: 27px; letter-spacing: -0.02em; color: var(--ink);
+}
+.stat .l {
+font-family: "IBM Plex Mono", monospace; font-size: 11px;
+letter-spacing: .1em; text-transform: uppercase; color: var(--slate);
+margin-top: 6px;
+}
+@media (max-width: 720px) {
+.panel-strip { grid-template-columns: repeat(2, 1fr); }
+.stat:nth-child(2) { border-right: none; }
+.stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--hair-2); }
+}
+/* ── STACK ─────────────────────────────────────── */
+.stack { padding: 56px 0 8px; }
+.stack-row {
+display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+}
+.chip {
+font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+color: var(--ink); background: var(--panel);
+border: 1px solid var(--hair); border-radius: 8px; padding: 8px 14px;
+}
+.chip b { color: var(--accent); font-weight: 600; }
+/* ── SECTION HEADERS ───────────────────────────── */
+section { padding: 60px 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.sec-head h2 {
+font-family: "Space Grotesk", sans-serif; font-weight: 600;
+font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.02em; margin-top: 14px;
+}
+.sec-head .count { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--slate); }
+/* ── FEATURED ──────────────────────────────────── */
+.feat {
+margin-top: 30px; border: 1px solid var(--hair); border-radius: 16px;
+background: var(--panel); box-shadow: var(--shadow); overflow: hidden;
+display: grid; grid-template-columns: 1.05fr 1fr;
+}
+.feat > * { min-width: 0; }
+.feat-media { position: relative; background: var(--hair-2); min-height: 280px; max-height: 420px; }
+.feat-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.feat-tag {
+position: absolute; top: 16px; left: 16px;
+font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em;
+text-transform: uppercase; background: var(--accent); color: #fff;
+padding: 6px 11px; border-radius: 7px;
+}
+.feat-body { padding: 34px; display: flex; flex-direction: column; }
+.feat-body h3 {
+font-family: "Space Grotesk", sans-serif; font-weight: 600;
+font-size: 25px; letter-spacing: -0.015em; margin: 12px 0 0;
+}
+.feat-body p { color: var(--slate); margin-top: 12px; font-size: 15.5px; }
+.feat-metrics {
+display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+margin: 22px 0; border: 1px solid var(--hair-2); border-radius: 10px; overflow: hidden;
+}
+.feat-metrics div { padding: 13px 14px; border-right: 1px solid var(--hair-2); }
+.feat-metrics div:last-child { border-right: none; }
+.feat-metrics .fk { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; }
+.feat-metrics .fl { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
+.feat-links { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; padding-top: 14px; }
+.tlink {
+font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+color: var(--accent); text-decoration: none; display: inline-flex; gap: 6px; align-items: center;
+}
+.tlink:hover { color: var(--accent-ink); text-decoration: underline; }
+@media (max-width: 800px) {
+.feat { grid-template-columns: 1fr !important; }
+.feat-media { min-height: 200px; max-height: 320px; }
+}
+/* ── PROJECT GRID ──────────────────────────────── */
+.grid { margin-top: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 720px; }
+@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+.card {
+border: 1px solid var(--hair); border-radius: 14px; background: var(--panel);
+overflow: hidden; display: flex; flex-direction: column;
+transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--slate); }
+.card-media { aspect-ratio: 16/10; background: var(--hair-2); overflow: hidden; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.card:hover .card-media img { transform: scale(1.04); }
+.card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+.card .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.card h3 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 18px; margin: 7px 0 0; letter-spacing: -0.01em; }
+.card p { color: var(--slate); font-size: 14px; margin-top: 8px; flex: 1; }
+.card a.tlink { margin-top: 14px; }
+/* ── PROJECT GROUP LABEL (category dividers in Selected work) ─── */
+.group-label {
+display: flex; align-items: center; gap: 10px;
+font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+letter-spacing: .09em; text-transform: uppercase; color: var(--slate);
+margin-top: 34px; margin-bottom: 2px;
+}
+.group-label:first-of-type { margin-top: 26px; }
+.group-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.group-label .rule { flex: 1; height: 1px; background: var(--hair-2); }
+/* ── ABOUT ─────────────────────────────────────── */
+.about { background: var(--panel); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+@media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 22px; } }
+.about p { color: var(--slate); font-size: 16px; margin-top: 14px; max-width: 60ch; }
+.about p strong { color: var(--ink); font-weight: 600; }
+.about-side { font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+.about-side .row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--hair-2); gap: 16px; }
+.about-side .row span:first-child { color: var(--slate); }
+.about-side .row span:last-child { color: var(--ink); text-align: right; }
+/* ── CONTACT ───────────────────────────────────── */
+.contact { text-align: center; padding: 84px 0; }
+.contact h2 { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.025em; }
+.contact p { color: var(--slate); margin: 14px auto 0; max-width: 48ch; font-size: 17px; }
+.contact-links { margin-top: 30px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+footer { border-top: 1px solid var(--hair); padding: 26px 0; }
+.foot-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.foot-in span { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--slate); }
+/* content always visible — no entrance animation, nothing can hide it */
+.reveal { opacity: 1 !important; transform: none !important; }
+a:focus-visible, button:focus-visible {
+outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
+}
+/* prevent any horizontal overflow & wrap long words on small screens */
+html, body { overflow-x: hidden; }
+.feat-body h3, .feat-body p, .hero h1 { overflow-wrap: anywhere; word-break: break-word; }
+@media (max-width: 560px) {
+.feat-body { padding: 20px; }
+.feat-body h3 { font-size: 22px; }
+.feat-metrics { grid-template-columns: 1fr; }
+.feat-metrics div { border-right: none; border-bottom: 1px solid var(--hair-2); }
+.feat-metrics div:last-child { border-bottom: none; }
+.wrap { padding: 0 18px; }
+}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-in">
-    <a href="#top" class="brand">Ruben<span>.FM</span></a>
-    <div class="nav-links">
-      <a href="#work" class="nav-hide">Work</a>
-      <a href="#about" class="nav-hide">About</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
-      <a href="#contact" class="nav-cta">Get in touch</a>
-    </div>
-  </div>
+<div class="nav-in">
+<a href="#top" class="brand">Ruben<span>.FM</span></a>
+<div class="nav-links">
+<a href="#work" class="nav-hide">Work</a>
+<a href="#about" class="nav-hide">About</a>
+<button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+<a href="#contact" class="nav-cta">Get in touch</a>
+</div>
+</div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="wrap">
-    <span class="eyebrow">Data Analyst · Catalonia</span>
-    <h1>I turn raw operational data into decisions people <em>actually use</em>.</h1>
-    <p class="lede">
-      Operations and project analytics for an IBEX-35 bank by day; SQL, Power BI,
-      Python and R across the stack. I like the unglamorous part — modelling messy
-      data correctly so the dashboard on top can be trusted.
-    </p>
-    <div class="hero-cta">
-      <a href="#work" class="btn btn-primary">See the work →</a>
-      <a href="https://github.com/rubenfm77" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
-    </div>
-
-    <div class="panel-strip" aria-label="Key facts">
-      <div class="stat"><div class="k">5+ yrs</div><div class="l">Analytics</div></div>
-      <div class="stat"><div class="k">IBEX-35</div><div class="l">Current sector</div></div>
-      <div class="stat"><div class="k">SQL · BI</div><div class="l">Core stack</div></div>
-      <div class="stat"><div class="k">ML</div><div class="l">Python / R</div></div>
-    </div>
-  </div>
+<div class="wrap">
+<span class="eyebrow">Data Analyst · Catalonia</span>
+<h1>I turn raw operational data into decisions people <em>actually use</em>.</h1>
+<p class="lede">
+Operations and project analytics for an IBEX-35 bank by day; SQL, Power BI,
+Python and R across the stack. I like the unglamorous part — modelling messy
+data correctly so the dashboard on top can be trusted.
+</p>
+<div class="hero-cta">
+<a href="#work" class="btn btn-primary">See the work →</a>
+<a href="https://github.com/rubenfm77" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+</div>
+<div class="panel-strip" aria-label="Key facts">
+<div class="stat"><div class="k">5+ yrs</div><div class="l">Analytics</div></div>
+<div class="stat"><div class="k">IBEX-35</div><div class="l">Current sector</div></div>
+<div class="stat"><div class="k">SQL · BI</div><div class="l">Core stack</div></div>
+<div class="stat"><div class="k">ML</div><div class="l">Python / R</div></div>
+</div>
+</div>
 </header>
 
 <div class="wrap stack reveal">
-  <span class="eyebrow">Toolkit</span>
-  <div class="stack-row">
-    <span class="chip"><b>SQL</b> · query &amp; modelling</span>
-    <span class="chip"><b>Power BI</b> · DAX, data models</span>
-    <span class="chip"><b>Python</b> · pandas, scikit-learn</span>
-    <span class="chip"><b>R</b> · statistical modelling</span>
-    <span class="chip"><b>Tableau</b> · visual analytics</span>
-    <span class="chip"><b>Streamlit</b> · data apps</span>
-    <span class="chip"><b>PyTorch</b> · deep learning</span>
-    <span class="chip"><b>MLOps</b> · drift &amp; monitoring</span>
-    <span class="chip"><b>ESM-2</b> · protein AI</span>
-    <span class="chip"><b>RDKit</b> · cheminformatics</span>
-  </div>
+<span class="eyebrow">Toolkit</span>
+<div class="stack-row">
+<span class="chip"><b>SQL</b> · query &amp; modelling</span>
+<span class="chip"><b>Power BI</b> · DAX, data models</span>
+<span class="chip"><b>Python</b> · pandas, scikit-learn</span>
+<span class="chip"><b>R</b> · statistical modelling</span>
+<span class="chip"><b>Tableau</b> · visual analytics</span>
+<span class="chip"><b>Streamlit</b> · data apps</span>
+<span class="chip"><b>PyTorch</b> · deep learning</span>
+<span class="chip"><b>MLOps</b> · drift &amp; monitoring</span>
+<span class="chip"><b>ESM-2</b> · protein AI</span>
+<span class="chip"><b>RDKit</b> · cheminformatics</span>
+</div>
 </div>
 
 <section id="work" class="wrap">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">Featured</span><h2>Cycling Performance ML</h2></div>
-  </div>
-
-  <div class="feat reveal">
-    <div class="feat-media">
-      <span class="feat-tag">Live app + ML pipeline</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/cycling-performance-ml/main/pmc_full.png"
-           alt="Performance Management Chart from the cycling analytics pipeline" loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">PYTHON · SCIKIT-LEARN · STREAMLIT</span>
-      <h3>Six years of training data, modelled end to end</h3>
-      <p>
-        A full pipeline over 6.5 years of my own riding: data from Strava,
-        TrainingPeaks and Intervals.icu joined into one dataset, engineered
-        features, and models that explain what actually drives threshold
-        gains. A live dashboard turns it into weekly decisions on the phone.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">964</div><div class="fl">Sessions</div></div>
-        <div><div class="fk">130k</div><div class="fl">Total TSS</div></div>
-        <div><div class="fk">0.99</div><div class="fl">Model R²</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://cycling-performance-ml-gwl7kzbkctmdgnatg2jvnt.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
-        <a class="tlink" href="https://github.com/rubenfm77/cycling-performance-ml" target="_blank" rel="noopener">↗ Source code</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">Featured</span><h2>Cycling Performance ML</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">Live app + ML pipeline</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/cycling-performance-ml/main/pmc_full.png"
+alt="Performance Management Chart from the cycling analytics pipeline" loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">PYTHON · SCIKIT-LEARN · STREAMLIT</span>
+<h3>Six years of training data, modelled end to end</h3>
+<p>
+A full pipeline over 6.5 years of my own riding: data from Strava,
+TrainingPeaks and Intervals.icu joined into one dataset, engineered
+features, and models that explain what actually drives threshold
+gains. A live dashboard turns it into weekly decisions on the phone.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">964</div><div class="fl">Sessions</div></div>
+<div><div class="fk">130k</div><div class="fl">Total TSS</div></div>
+<div><div class="fk">0.99</div><div class="fl">Model R²</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://cycling-performance-ml-gwl7kzbkctmdgnatg2jvnt.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
+<a class="tlink" href="https://github.com/rubenfm77/cycling-performance-ml" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">MSc capstone</span><h2>Employee Attrition — ML in R</h2></div>
-  </div>
-
-  <div class="feat reveal">
-    <div class="feat-media">
-      <span class="feat-tag">R · H2O AutoML · Power BI</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg"
-           alt="HR attrition Power BI dashboard built from the R model's findings"
-           loading="lazy" style="object-position: top center;" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">R · H2O · RANDOM FOREST · GBM · DEEP LEARNING</span>
-      <h3>Predicting who leaves — and giving HR something to act on</h3>
-      <p>
-        End-to-end capstone on the IBM HR dataset (1,470 employees, 35
-        variables): full exploratory analysis, class balancing and outlier
-        handling, then a model bake-off across H2O AutoML, Random Forest, GBM
-        and Deep Learning. Overtime, job role, pay and work environment came
-        out as the strongest churn drivers — translated into a Power BI
-        dashboard so HR can act before people leave.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">0.84</div><div class="fl">Best AUC</div></div>
-        <div><div class="fk">4</div><div class="fl">Model families</div></div>
-        <div><div class="fk">1,470</div><div class="fl">Employees</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" rel="noopener">↗ R notebook (TFM)</a>
-        <a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Power BI dashboard</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">MSc capstone</span><h2>Employee Attrition — ML in R</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">R · H2O AutoML · Power BI</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/HRDash_1.jpg"
+alt="HR attrition Power BI dashboard built from the R model's findings"
+loading="lazy" style="object-position: top center;" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">R · H2O · RANDOM FOREST · GBM · DEEP LEARNING</span>
+<h3>Predicting who leaves — and giving HR something to act on</h3>
+<p>
+End-to-end capstone on the IBM HR dataset (1,470 employees, 35
+variables): full exploratory analysis, class balancing and outlier
+handling, then a model bake-off across H2O AutoML, Random Forest, GBM
+and Deep Learning. Overtime, job role, pay and work environment came
+out as the strongest churn drivers — translated into a Power BI
+dashboard so HR can act before people leave.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">0.84</div><div class="fl">Best AUC</div></div>
+<div><div class="fk">4</div><div class="fl">Model families</div></div>
+<div><div class="fk">1,470</div><div class="fl">Employees</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://github.com/rubenfm77/MACHINE_LEARNING_R" target="_blank" rel="noopener">↗ R notebook (TFM)</a>
+<a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Power BI dashboard</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">MLOps Engineering</span><h2>ICU Sepsis Early-Prediction</h2></div>
-  </div>
-
-  <div class="feat reveal">
-    <div class="feat-media">
-      <span class="feat-tag">PyTorch · Drift Detection · Clinical ML</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/icu-sepsis-prediction/main/reports/degradation_plot.png"
-           alt="Sepsis model degradation: AUPRC decay and PSI spike after sensor recalibration"
-           loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">PYTORCH · GRU · MLOPS · DRIFT DETECTION</span>
-      <h3>Predicting sepsis onset — then keeping the model honest in production</h3>
-      <p>
-        End-to-end clinical ML pipeline: a two-layer GRU trained on 12-hour ICU
-        time-series windows (PhysioNet 2019 schema) to flag sepsis risk 1–6 hours
-        early. A full MLOps layer monitors predictions in real time, computes
-        Population Stability Index per feature, and fires automated retrain
-        decisions. The degradation simulation catches sensor-recalibration drift
-        on the very first affected batch — zero false retrains in the clean phase.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">Batch 6</div><div class="fl">Drift detected</div></div>
-        <div><div class="fk">PSI ×11</div><div class="fl">Spike at onset</div></div>
-        <div><div class="fk">0 false</div><div class="fl">Retrains (clean)</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://github.com/rubenfm77/icu-sepsis-prediction" target="_blank" rel="noopener">↗ Source code &amp; postmortem</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">MLOps Engineering</span><h2>ICU Sepsis Early-Prediction</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">PyTorch · Drift Detection · Clinical ML</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/icu-sepsis-prediction/main/reports/degradation_plot.png"
+alt="Sepsis model degradation: AUPRC decay and PSI spike after sensor recalibration"
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">PYTORCH · GRU · MLOPS · DRIFT DETECTION</span>
+<h3>Predicting sepsis onset — then keeping the model honest in production</h3>
+<p>
+End-to-end clinical ML pipeline: a two-layer GRU trained on 12-hour ICU
+time-series windows (PhysioNet 2019 schema) to flag sepsis risk 1–6 hours
+early. A full MLOps layer monitors predictions in real time, computes
+Population Stability Index per feature, and fires automated retrain
+decisions. The degradation simulation catches sensor-recalibration drift
+on the very first affected batch — zero false retrains in the clean phase.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">Batch 6</div><div class="fl">Drift detected</div></div>
+<div><div class="fk">PSI ×11</div><div class="fl">Spike at onset</div></div>
+<div><div class="fk">0 false</div><div class="fl">Retrains (clean)</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://github.com/rubenfm77/icu-sepsis-prediction" target="_blank" rel="noopener">↗ Source code &amp; postmortem</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">AI · Bioinformatics</span><h2>De Novo Drug Design Pipeline</h2></div>
-  </div>
-
-  <div class="feat reveal">
-    <div class="feat-media">
-      <span class="feat-tag">ESM-2 · RDKit · Live Dashboard</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/drug-discovery-ai/master/DRUG_TARGET.png"
-           alt="De novo drug design dashboard: QED gauge 0.79, radar chart, ESM-2 embedding heatmap for SARS-CoV-2 Mpro"
-           loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">ESM-2 · PYTORCH · RDKIT · STREAMLIT</span>
-      <h3>Protein embeddings → drug candidate in one pipeline</h3>
-      <p>
-        End-to-end de novo drug design at zero infrastructure cost: a protein
-        target (PDB ID) goes in, a scored drug candidate comes out. Meta's
-        ESM-2 language model encodes the amino acid sequence into a 320-dimensional
-        embedding; embedding-guided fragment assembly generates a candidate molecule;
-        RDKit evaluates it on QED, SA Score, Lipinski's Rule of Five and docking
-        score. Pre-computed on Colab free GPU for 6 disease targets — COVID-19
-        Mpro, BRAF V600E, EGFR, CDK2 and more.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">0.79</div><div class="fl">Best QED</div></div>
-        <div><div class="fk">−9.1</div><div class="fl">Best dock (kcal/mol)</div></div>
-        <div><div class="fk">5 / 6</div><div class="fl">Lipinski pass</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://drug-discovery-ai-hrrtnzkb64gakodba5vahx.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
-        <a class="tlink" href="https://github.com/rubenfm77/drug-discovery-ai" target="_blank" rel="noopener">↗ Source code</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">AI · Bioinformatics</span><h2>De Novo Drug Design Pipeline</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">ESM-2 · RDKit · Live Dashboard</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/drug-discovery-ai/master/DRUG_TARGET.png"
+alt="De novo drug design dashboard: QED gauge 0.79, radar chart, ESM-2 embedding heatmap for SARS-CoV-2 Mpro"
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">ESM-2 · PYTORCH · RDKIT · STREAMLIT</span>
+<h3>Protein embeddings → drug candidate in one pipeline</h3>
+<p>
+End-to-end de novo drug design at zero infrastructure cost: a protein
+target (PDB ID) goes in, a scored drug candidate comes out. Meta's
+ESM-2 language model encodes the amino acid sequence into a 320-dimensional
+embedding; embedding-guided fragment assembly generates a candidate molecule;
+RDKit evaluates it on QED, SA Score, Lipinski's Rule of Five and docking
+score. Pre-computed on Colab free GPU for 6 disease targets — COVID-19
+Mpro, BRAF V600E, EGFR, CDK2 and more.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">0.79</div><div class="fl">Best QED</div></div>
+<div><div class="fk">−9.1</div><div class="fl">Best dock (kcal/mol)</div></div>
+<div><div class="fk">5 / 6</div><div class="fl">Lipinski pass</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://drug-discovery-ai-hrrtnzkb64gakodba5vahx.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
+<a class="tlink" href="https://github.com/rubenfm77/drug-discovery-ai" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">AI · Banking · LLM Tooling</span><h2>Natural-Language SQL Analytics Agent</h2></div>
-  </div>
-
-  <div class="feat reveal" style="flex-direction:row-reverse;">
-    <div class="feat-media">
-      <span class="feat-tag">Groq · Llama 3.3 70B · Live Demo</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/sql-analyst-agent/main/preview.svg"
-           alt="SQL Analyst Agent dashboard: KPI cards showing 2000 companies, 28062 M€ exposure, 14.2% RAROC; generated SQL query; results table and bar chart of PD by relationship manager"
-           loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">GROQ · LLAMA 3.3 70B · SQLITE · STREAMLIT · PLOTLY</span>
-      <h3>Ask a banking question. Get SQL, results, and a chart — instantly.</h3>
-      <p>
-        End-to-end NL-to-SQL agent built on a synthetic SME credit portfolio of 2 000 European
-        companies, 6 000+ loans, and 120 000 payment records. Type a plain-English question
-        — the Groq-hosted Llama 3.3 70B model generates a safe, validated SQLite query
-        that runs live against the database and returns an auto-selected Plotly chart.
-        Covers the full credit-risk analytics stack: RAROC, Expected Loss, PD, LGD, EAD,
-        Capital Consumption, Altman Z-score, NPL ratios, and cost of risk.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">2 000</div><div class="fl">Companies · 15 EU countries</div></div>
-        <div><div class="fk">&lt;1s</div><div class="fl">LLM response (Groq)</div></div>
-        <div><div class="fk">100%</div><div class="fl">SELECT-only · safe execution</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://sql-analyst-agent-nqtymwzlydyhbza6a9jzrf.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
-        <a class="tlink" href="https://github.com/rubenfm77/sql-analyst-agent" target="_blank" rel="noopener">↗ Source code</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">AI · Banking · LLM Tooling</span><h2>Natural-Language SQL Analytics Agent</h2></div>
+</div>
+<div class="feat reveal" style="flex-direction:row-reverse;">
+<div class="feat-media">
+<span class="feat-tag">Groq · Llama 3.3 70B · Live Demo</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/sql-analyst-agent/main/preview.svg"
+alt="SQL Analyst Agent dashboard: KPI cards showing 2000 companies, 28062 M€ exposure, 14.2% RAROC; generated SQL query; results table and bar chart of PD by relationship manager"
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">GROQ · LLAMA 3.3 70B · SQLITE · STREAMLIT · PLOTLY</span>
+<h3>Ask a banking question. Get SQL, results, and a chart — instantly.</h3>
+<p>
+End-to-end NL-to-SQL agent built on a synthetic SME credit portfolio of 2 000 European
+companies, 6 000+ loans, and 120 000 payment records. Type a plain-English question
+— the Groq-hosted Llama 3.3 70B model generates a safe, validated SQLite query
+that runs live against the database and returns an auto-selected Plotly chart.
+Covers the full credit-risk analytics stack: RAROC, Expected Loss, PD, LGD, EAD,
+Capital Consumption, Altman Z-score, NPL ratios, and cost of risk.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">2 000</div><div class="fl">Companies · 15 EU countries</div></div>
+<div><div class="fk">&lt;1s</div><div class="fl">LLM response (Groq)</div></div>
+<div><div class="fk">100%</div><div class="fl">SELECT-only · safe execution</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://sql-analyst-agent-nqtymwzlydyhbza6a9jzrf.streamlit.app/" target="_blank" rel="noopener">↗ Live dashboard</a>
+<a class="tlink" href="https://github.com/rubenfm77/sql-analyst-agent" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">Banking · Credit Risk · Regulatory</span><h2>EuroCredit — Counterparty Credit Risk Terminal</h2></div>
-  </div>
-
-  <div class="feat reveal" style="flex-direction:row-reverse;">
-    <div class="feat-media">
-      <span class="feat-tag">React · Vite · Fully Client-Side</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/eurocredit/main/preview.svg"
-           alt="EuroCredit terminal: portfolio strip showing 60 counterparties, 4.7% avg PD, 28 investment grade; company table with letter grades and compliance flags; credit dossier with Altman Z″ breakdown bars and financial ratios"
-           loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">REACT · VITE · ALTMAN Z″ · BASEL III · IFRS 9</span>
-      <h3>Credit risk scoring, letter grades, and compliance flags — with no backend.</h3>
-      <p>
-        A browser-based counterparty credit risk terminal for a synthetic portfolio of 60 European
-        companies across 15 countries and 10 NACE sectors. A blended model combines Altman Z″ score,
-        leverage (Net Debt / EBITDA), Debt Service Coverage Ratio, and country &amp; sector risk
-        into a single 0–100 score that maps to a letter grade (AAA → D) and a calibrated
-        12-month Probability of Default. Automated compliance flags surface Basel III, IFRS 9 Stage
-        classification, EU AI Act, and GDPR exposure. Runs entirely client-side — no API, no server.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">60</div><div class="fl">Counterparties · 15 EU countries</div></div>
-        <div><div class="fk">AAA→D</div><div class="fl">Full grade spectrum</div></div>
-        <div><div class="fk">0</div><div class="fl">Backend dependencies</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" href="https://rubenfm77.github.io/eurocredit/" target="_blank" rel="noopener">↗ Live terminal</a>
-        <a class="tlink" href="https://github.com/rubenfm77/eurocredit" target="_blank" rel="noopener">↗ Source code</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">Banking · Credit Risk · Regulatory</span><h2>EuroCredit — Counterparty Credit Risk Terminal</h2></div>
+</div>
+<div class="feat reveal" style="flex-direction:row-reverse;">
+<div class="feat-media">
+<span class="feat-tag">React · Vite · Fully Client-Side</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/eurocredit/main/preview.svg"
+alt="EuroCredit terminal: portfolio strip showing 60 counterparties, 4.7% avg PD, 28 investment grade; company table with letter grades and compliance flags; credit dossier with Altman Z″ breakdown bars and financial ratios"
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">REACT · VITE · ALTMAN Z″ · BASEL III · IFRS 9</span>
+<h3>Credit risk scoring, letter grades, and compliance flags — with no backend.</h3>
+<p>
+A browser-based counterparty credit risk terminal for a synthetic portfolio of 60 European
+companies across 15 countries and 10 NACE sectors. A blended model combines Altman Z″ score,
+leverage (Net Debt / EBITDA), Debt Service Coverage Ratio, and country &amp; sector risk
+into a single 0–100 score that maps to a letter grade (AAA → D) and a calibrated
+12-month Probability of Default. Automated compliance flags surface Basel III, IFRS 9 Stage
+classification, EU AI Act, and GDPR exposure. Runs entirely client-side — no API, no server.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">60</div><div class="fl">Counterparties · 15 EU countries</div></div>
+<div><div class="fk">AAA→D</div><div class="fl">Full grade spectrum</div></div>
+<div><div class="fk">0</div><div class="fl">Backend dependencies</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://rubenfm77.github.io/eurocredit/" target="_blank" rel="noopener">↗ Live terminal</a>
+<a class="tlink" href="https://github.com/rubenfm77/eurocredit" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">HR · Banking · Full-Stack</span><h2>Compensation Statement Suite</h2></div>
-  </div>
-
-  <div class="feat reveal">
-    <div class="feat-media">
-      <span class="feat-tag">Streamlit · FastAPI · React · Power BI</span>
-      <img src="https://raw.githubusercontent.com/rubenfm77/comp-statement-suite/main/preview.svg"
-           alt="Compensation Statement Suite: three delivery options for an HR comp portal — Streamlit dashboard, FastAPI+React SPA, and Power BI RLS docs. Shows scenario comparison (Base €287k, Target €330k, Stretch €393k), department breakdown, and bcrypt auth layer."
-           loading="lazy" />
-    </div>
-    <div class="feat-body">
-      <span class="kicker mono" style="color:var(--accent)">PYTHON · STREAMLIT · FASTAPI · REACT + TS · POWER BI · BCRYPT</span>
-      <h3>One HR portal. Three architectures. Zero external dependencies.</h3>
-      <p>
-        A monorepo demonstrating three production-honest delivery options for an employee
-        compensation self-service portal — all reading from the same synthetic CSV dataset
-        (200 employees, seed 42) through a shared Python core.
-        <strong>Streamlit</strong> covers role-based views (employee / manager / HR / admin) with bcrypt auth;
-        <strong>FastAPI + React</strong> deploys as a fully static Vite app with bundled demo data (no backend needed on Vercel);
-        <strong>Power BI</strong> is a complete design deliverable — star schema, DAX measures,
-        Row-Level Security via <code>USERPRINCIPALNAME()</code>, and a DPO-ready pitch note
-        comparing all three options ready to hand to a client.
-      </p>
-      <div class="feat-metrics">
-        <div><div class="fk">3</div><div class="fl">Delivery layers</div></div>
-        <div><div class="fk">200</div><div class="fl">Synthetic employees</div></div>
-        <div><div class="fk">0</div><div class="fl">External API calls</div></div>
-      </div>
-      <div class="feat-links">
-        <a class="tlink" id="comp-streamlit-link" href="https://comp-statement-suite-k56tsnqbfthkv4yym3kimc.streamlit.app/" target="_blank" rel="noopener">↗ Streamlit live app</a>
-        <a class="tlink" id="comp-react-link" href="https://comp-statement-suite.vercel.app/" target="_blank" rel="noopener">↗ React live demo</a>
-        <a class="tlink" href="https://htmlpreview.github.io/?https://github.com/rubenfm77/comp-statement-suite/blob/main/powerbi/dashboard.html" target="_blank" rel="noopener">↗ Power BI dashboard</a>
-        <a class="tlink" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ Source code</a>
-      </div>
-    </div>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">Banking · Credit Risk · GenAI</span><h2>Credit Risk Scoring ML</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">XGBoost · Groq · Claude · Streamlit</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/credit-risk-scoring-ml/main/preview.png"
+alt="Credit Risk Scoring ML dashboard: rating distribution chart, ROC curve, PSI drift monitoring table and GenAI-generated risk explanation"
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">XGBOOST · SCIKIT-LEARN · GROQ · CLAUDE API · STREAMLIT · PSI MONITORING</span>
+<h3>From PD estimate to plain-English explanation — end to end</h3>
+<p>
+A credit scoring and rating model covering the full credit lifecycle — origination,
+monitoring, recovery — across individual, self-employed and business segments. An
+XGBoost classifier estimates probability of default and maps it to an agency-style
+letter rating (AAA → D). A Population Stability Index layer flags portfolio drift
+automatically, and a three-tier GenAI fallback chain (Groq → Claude → local template)
+turns every score into a plain-English explanation for a risk manager — free to run,
+with no single point of failure.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">AAA→D</div><div class="fl">Full rating spectrum</div></div>
+<div><div class="fk">3-tier</div><div class="fl">GenAI fallback chain</div></div>
+<div><div class="fk">0.66</div><div class="fl">Model AUC</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" href="https://credit-risk-scoring-ml-9t9mkdkgho4f5cg5t6pbpr.streamlit.app" target="_blank" rel="noopener">↗ Live dashboard</a>
+<a class="tlink" href="https://github.com/rubenfm77/credit-risk-scoring-ml" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="wrap" style="padding-top:8px;">
-  <div class="sec-head reveal">
-    <div><span class="eyebrow">More projects</span><h2>Selected work</h2></div>
-    <span class="count">04 / projects</span>
-  </div>
+<div class="sec-head reveal">
+<div><span class="eyebrow">HR · Banking · Full-Stack</span><h2>Compensation Statement Suite</h2></div>
+</div>
+<div class="feat reveal">
+<div class="feat-media">
+<span class="feat-tag">Streamlit · FastAPI · React · Power BI</span>
+<img src="https://raw.githubusercontent.com/rubenfm77/comp-statement-suite/main/preview.svg"
+alt="Compensation Statement Suite: three delivery options for an HR comp portal — Streamlit dashboard, FastAPI+React SPA, and Power BI RLS docs. Shows scenario comparison (Base €287k, Target €330k, Stretch €393k), department breakdown, and bcrypt auth layer."
+loading="lazy" />
+</div>
+<div class="feat-body">
+<span class="kicker mono" style="color:var(--accent)">PYTHON · STREAMLIT · FASTAPI · REACT + TS · POWER BI · BCRYPT</span>
+<h3>One HR portal. Three architectures. Zero external dependencies.</h3>
+<p>
+A monorepo demonstrating three production-honest delivery options for an employee
+compensation self-service portal — all reading from the same synthetic CSV dataset
+(200 employees, seed 42) through a shared Python core.
+<strong>Streamlit</strong> covers role-based views (employee / manager / HR / admin) with bcrypt auth;
+<strong>FastAPI + React</strong> deploys as a fully static Vite app with bundled demo data (no backend needed on Vercel);
+<strong>Power BI</strong> is a complete design deliverable — star schema, DAX measures,
+Row-Level Security via <code>USERPRINCIPALNAME()</code>, and a DPO-ready pitch note
+comparing all three options ready to hand to a client.
+</p>
+<div class="feat-metrics">
+<div><div class="fk">3</div><div class="fl">Delivery layers</div></div>
+<div><div class="fk">200</div><div class="fl">Synthetic employees</div></div>
+<div><div class="fk">0</div><div class="fl">External API calls</div></div>
+</div>
+<div class="feat-links">
+<a class="tlink" id="comp-streamlit-link" href="https://comp-statement-suite-k56tsnqbfthkv4yym3kimc.streamlit.app/" target="_blank" rel="noopener">↗ Streamlit live app</a>
+<a class="tlink" id="comp-react-link" href="https://comp-statement-suite.vercel.app/" target="_blank" rel="noopener">↗ React live demo</a>
+<a class="tlink" href="https://htmlpreview.github.io/?https://github.com/rubenfm77/comp-statement-suite/blob/main/powerbi/dashboard.html" target="_blank" rel="noopener">↗ Power BI dashboard</a>
+<a class="tlink" href="https://github.com/rubenfm77/comp-statement-suite" target="_blank" rel="noopener">↗ Source code</a>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="grid">
-    <article class="card reveal">
-      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg" alt="Executive KPI dashboard" loading="lazy" /></div>
-      <div class="card-body">
-        <span class="kicker">Power BI · DAX · SQL Server</span>
-        <h3>Executive KPI Dashboards</h3>
-        <p>Star-schema model joining sales, budget and customer data in SQL Server — surfaced in Power BI with YoY analysis, customer segmentation (VIP / Regular / New), and seasonality breakdowns.</p>
-        <a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Repo</a>
-      </div>
-    </article>
+<section class="wrap" style="padding-top:8px;">
+<div class="sec-head reveal">
+<div><span class="eyebrow">More projects</span><h2>Selected work</h2></div>
+<span class="count">4 projects · 2 categories</span>
+</div>
 
-    <article class="card reveal">
-      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg" alt="Tableau visual analytics" loading="lazy" /></div>
-      <div class="card-body">
-        <span class="kicker">Tableau</span>
-        <h3>Visual Analytics</h3>
-        <p>Interactive Tableau views exploring workforce demographics and market segments through linked, drill-down dashboards with KPI scorecards.</p>
-        <a class="tlink" href="https://github.com/rubenfm77/TABLEAU" target="_blank" rel="noopener">↗ Repo</a>
-      </div>
-    </article>
+<div class="group-label reveal"><span class="dot"></span>SQL &amp; Databases<span class="rule"></span></div>
+<div class="grid">
+<article class="card reveal">
+<div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/main/SALES.jpg" alt="SQL Server advanced analytics" loading="lazy" /></div>
+<div class="card-body">
+<span class="kicker">SQL Server · Window Functions · CTEs</span>
+<h3>Advanced SQL Analytics</h3>
+<p>Production-ready SQL patterns: running totals, YoY performance, part-to-whole contribution, RFM-style customer segmentation — all on a real sales warehouse schema.</p>
+<a class="tlink" href="https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS" target="_blank" rel="noopener">↗ Repo</a>
+</div>
+</article>
 
-    <article class="card reveal">
-      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS/main/SALES.jpg" alt="SQL Server advanced analytics" loading="lazy" /></div>
-      <div class="card-body">
-        <span class="kicker">SQL Server · Window Functions · CTEs</span>
-        <h3>Advanced SQL Analytics</h3>
-        <p>Production-ready SQL patterns: running totals, YoY performance, part-to-whole contribution, RFM-style customer segmentation — all on a real sales warehouse schema.</p>
-        <a class="tlink" href="https://github.com/rubenfm77/SQL-SERVER-ADVANCED-ANALYTICS" target="_blank" rel="noopener">↗ Repo</a>
-      </div>
-    </article>
+<article class="card reveal">
+<div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/Netflix_SQL/main/logo.png" alt="Netflix SQL analysis" loading="lazy" /></div>
+<div class="card-body">
+<span class="kicker">PostgreSQL</span>
+<h3>Netflix Catalog Analysis</h3>
+<p>15 analytical SQL queries on Netflix's full catalog: content mix, top-producing countries, genre distribution, rating profiles, and keyword-based content classification.</p>
+<a class="tlink" href="https://github.com/rubenfm77/Netflix_SQL" target="_blank" rel="noopener">↗ Repo</a>
+</div>
+</article>
+</div>
 
-    <article class="card reveal">
-      <div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/Netflix_SQL/main/logo.png" alt="Netflix SQL analysis" loading="lazy" /></div>
-      <div class="card-body">
-        <span class="kicker">PostgreSQL</span>
-        <h3>Netflix Catalog Analysis</h3>
-        <p>15 analytical SQL queries on Netflix's full catalog: content mix, top-producing countries, genre distribution, rating profiles, and keyword-based content classification.</p>
-        <a class="tlink" href="https://github.com/rubenfm77/Netflix_SQL" target="_blank" rel="noopener">↗ Repo</a>
-      </div>
-    </article>
-  </div>
+<div class="group-label reveal"><span class="dot"></span>BI &amp; Visualization<span class="rule"></span></div>
+<div class="grid">
+<article class="card reveal">
+<div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/POWER-BI/main/sales1.jpg" alt="Executive KPI dashboard" loading="lazy" /></div>
+<div class="card-body">
+<span class="kicker">Power BI · DAX · SQL Server</span>
+<h3>Executive KPI Dashboards</h3>
+<p>Star-schema model joining sales, budget and customer data in SQL Server — surfaced in Power BI with YoY analysis, customer segmentation (VIP / Regular / New), and seasonality breakdowns.</p>
+<a class="tlink" href="https://github.com/rubenfm77/POWER-BI" target="_blank" rel="noopener">↗ Repo</a>
+</div>
+</article>
+
+<article class="card reveal">
+<div class="card-media"><img src="https://raw.githubusercontent.com/rubenfm77/TABLEAU/main/HR1.jpg" alt="Tableau visual analytics" loading="lazy" /></div>
+<div class="card-body">
+<span class="kicker">Tableau</span>
+<h3>Visual Analytics</h3>
+<p>Interactive Tableau views exploring workforce demographics and market segments through linked, drill-down dashboards with KPI scorecards.</p>
+<a class="tlink" href="https://github.com/rubenfm77/TABLEAU" target="_blank" rel="noopener">↗ Repo</a>
+</div>
+</article>
+</div>
 </section>
 
 <section id="about" class="about">
-  <div class="wrap">
-    <div class="about-grid">
-      <div>
-        <span class="eyebrow">About</span>
-        <h2 style="font-family:'Space Grotesk';font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:14px;">
-          Analyst by trade, climber by obsession.
-        </h2>
-      </div>
-      <div>
-        <p>
-          I work in operations and projects for a major Spanish bank, where most of
-          the job is making data trustworthy inside tightly restricted systems —
-          Power BI, SQL, SharePoint, and a lot of careful modelling before
-          anything reaches a chart.
-        </p>
-        <p>
-          Away from the desk I'm a road cyclist and a <strong>pure climber</strong>
-          in the mountains around Barcelona. That's not a footnote: the cycling
-          ML project above is real personal data, and the same instinct drives
-          both — <strong>measure honestly, model carefully, then decide</strong>.
-        </p>
-        <div class="about-side" style="margin-top:26px;">
-          <div class="row"><span>Based in</span><span>Catalonia, Spain</span></div>
-          <div class="row"><span>Focus</span><span>Analytics</span></div>
-          <div class="row"><span>Stack</span><span>SQL · Power BI · Python · R</span></div>
-          <div class="row"><span>Open to</span><span>Data analyst roles</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="about-grid">
+<div>
+<span class="eyebrow">About</span>
+<h2 style="font-family:'Space Grotesk';font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:14px;">
+Analyst by trade, climber by obsession.
+</h2>
+</div>
+<div>
+<p>
+I work in operations and projects for a major Spanish bank, where most of
+the job is making data trustworthy inside tightly restricted systems —
+Power BI, SQL, SharePoint, and a lot of careful modelling before
+anything reaches a chart.
+</p>
+<p>
+Away from the desk I'm a road cyclist and a <strong>pure climber</strong>
+in the mountains around Barcelona. That's not a footnote: the cycling
+ML project above is real personal data, and the same instinct drives
+both — <strong>measure honestly, model carefully, then decide</strong>.
+</p>
+<div class="about-side" style="margin-top:26px;">
+<div class="row"><span>Based in</span><span>Catalonia, Spain</span></div>
+<div class="row"><span>Focus</span><span>Analytics</span></div>
+<div class="row"><span>Stack</span><span>SQL · Power BI · Python · R</span></div>
+<div class="row"><span>Open to</span><span>Data analyst roles</span></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <section id="contact" class="contact wrap">
-  <div class="reveal">
-    <span class="eyebrow" style="justify-content:center;display:inline-flex;">Contact</span>
-    <h2>Let's talk data.</h2>
-    <p>Open to data analyst and BI roles. The fastest way to reach me is email or LinkedIn.</p>
-    <div class="contact-links">
-      <a class="btn btn-primary" href="mailto:Ruben.fernandez.martinez77@gmail.com">Email me</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="https://github.com/rubenfm77" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
+<div class="reveal">
+<span class="eyebrow" style="justify-content:center;display:inline-flex;">Contact</span>
+<h2>Let's talk data.</h2>
+<p>Open to data analyst and BI roles. The fastest way to reach me is email or LinkedIn.</p>
+<div class="contact-links">
+<a class="btn btn-primary" href="mailto:Ruben.fernandez.martinez77@gmail.com">Email me</a>
+<a class="btn btn-ghost" href="https://www.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-mart%C3%ADnez-851333172" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn btn-ghost" href="https://github.com/rubenfm77" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
 </section>
 
 <footer>
-  <div class="wrap foot-in">
-    <span>© 2026 Rubén Fernández Martínez</span>
-    <span>Built &amp; hosted on GitHub Pages</span>
-  </div>
+<div class="wrap foot-in">
+<span>© 2026 Rubén Fernández Martínez</span>
+<span>Built &amp; hosted on GitHub Pages</span>
+</div>
 </footer>
 
 <script>
-  // Theme toggle — sets both a data attribute and a class, logs each click.
-  (function () {
-    function applyDark(on) {
-      var el = document.documentElement;
-      if (on) { el.setAttribute("data-theme", "dark"); el.classList.add("dark"); }
-      else { el.removeAttribute("data-theme"); el.classList.remove("dark"); }
-    }
-    var saved = null;
-    try { saved = localStorage.getItem("theme"); } catch (e) {}
-    var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    applyDark(saved === "dark" || (!saved && sysDark));
-
-    function wire() {
-      var btn = document.getElementById("themeBtn");
-      if (!btn) { console.log("themeBtn not found"); return; }
-      function setIcon() {
-        var dark = document.documentElement.classList.contains("dark");
-        btn.textContent = dark ? "\u25CB" : "\u25D0";
-      }
-      setIcon();
-      btn.addEventListener("click", function () {
-        var dark = document.documentElement.classList.contains("dark");
-        applyDark(!dark);
-        try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
-        setIcon();
-        console.log("theme ->", document.documentElement.classList.contains("dark") ? "dark" : "light");
-      });
-    }
-    if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", wire); }
-    else { wire(); }
-  })();
-
+// Theme toggle — sets both a data attribute and a class, logs each click.
+(function () {
+function applyDark(on) {
+var el = document.documentElement;
+if (on) { el.setAttribute("data-theme", "dark"); el.classList.add("dark"); }
+else { el.removeAttribute("data-theme"); el.classList.remove("dark"); }
+}
+var saved = null;
+try { saved = localStorage.getItem("theme"); } catch (e) {}
+var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyDark(saved === "dark" || (!saved && sysDark));
+function wire() {
+var btn = document.getElementById("themeBtn");
+if (!btn) { console.log("themeBtn not found"); return; }
+function setIcon() {
+var dark = document.documentElement.classList.contains("dark");
+btn.textContent = dark ? "\u25CB" : "\u25D0";
+}
+setIcon();
+btn.addEventListener("click", function () {
+var dark = document.documentElement.classList.contains("dark");
+applyDark(!dark);
+try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+setIcon();
+console.log("theme ->", document.documentElement.classList.contains("dark") ? "dark" : "light");
+});
+}
+if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", wire); }
+else { wire(); }
+})();
 // (scroll-reveal removed — content is always visible)
 </script>
 </body>
